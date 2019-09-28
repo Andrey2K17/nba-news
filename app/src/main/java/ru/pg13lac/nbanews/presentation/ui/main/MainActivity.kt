@@ -1,7 +1,7 @@
 package ru.pg13lac.nbanews.presentation.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import ru.pg13lac.nbanews.R
 
 class MainActivity : AppCompatActivity() {
