@@ -1,18 +1,8 @@
 package ru.pg13lac.nbanews.presentation.ui.game_list
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import ru.pg13lac.nbanews.R
+import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
 
-class GameListFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_game_list, container, false)
-    }
+class GameListFragment : BaseFragment() {
+    override val layoutRes = R.layout.fragment_game_list
 }
