@@ -9,9 +9,9 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_table_teams"
+        android:id="@+id/action_teams_table"
         android:icon="@drawable/ic_table_teams"
-        android:title="@string/table_teams"
+        android:title="@string/teams_table"
         app:showAsAction="ifRoom" />
 
     <item
