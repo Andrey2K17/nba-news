@@ -1,5 +1,6 @@
 package ru.pg13lac.nbanews.presentation.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -25,20 +26,18 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.action_games_list -> {
                     addFragment(GameListFragment())
-                    return@OnNavigationItemSelectedListener true
                 }
                 R.id.action_teams_table -> {
                     addFragment(TeamsTableFragment())
-                    return@OnNavigationItemSelectedListener true
                 }
                 R.id.action_setting -> {
                     addFragment(SettingsFragment())
-                    return@OnNavigationItemSelectedListener true
                 }
             }
-            false
+            true
         }
 
+    @SuppressLint("PrivateResource")
     private fun addFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
