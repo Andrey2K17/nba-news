@@ -1,15 +1,11 @@
 package ru.pg13lac.nbanews.presentation.ui.main
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.pg13lac.nbanews.R
-import ru.pg13lac.nbanews.presentation.ui.game_list.GameListFragment
-import ru.pg13lac.nbanews.presentation.ui.settings.SettingsFragment
-import ru.pg13lac.nbanews.presentation.ui.teams_table.TeamsTableFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,35 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bnvMain.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        addFragment(GameListFragment())
-    }
-
-    private val mOnNavigationItemSelectedListener =
-        BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.action_games_list -> {
-                    addFragment(GameListFragment())
-                }
-                R.id.action_teams_table -> {
-                    addFragment(TeamsTableFragment())
-                }
-                R.id.action_setting -> {
-                    addFragment(SettingsFragment())
-                }
-            }
-            true
-        }
-
-    @SuppressLint("PrivateResource")
-    private fun addFragment(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(
-                R.anim.design_bottom_sheet_slide_in,
-                R.anim.design_bottom_sheet_slide_out
-            )
-            .replace(R.id.flContent, fragment, fragment.javaClass.simpleName)
-            .commit()
+        val navController = Navigation.findNavController(this, R.id.main_host_fragment)
+        NavigationUI.setupWithNavController(bnvMain, navController)
     }
 }
