@@ -3,8 +3,10 @@ package ru.pg13lac.nbanews.presentation.ui.game_list
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
+import kotlinx.android.synthetic.main.fragment_game_list.*
 import ru.pg13lac.nbanews.App
 import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
@@ -19,17 +21,23 @@ class GameListFragment : BaseFragment() {
 
     private val disposeBag = CompositeDisposable()
 
+    private lateinit var gameListAdapter: GameListAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         App.instance.component.inject(this)
         setBindings()
+
+        rvGameList.layoutManager = LinearLayoutManager(activity)
+        gameListAdapter = GameListAdapter()
+        rvGameList.adapter = gameListAdapter
         viewModel.getGames("01.21.18")
     }
 
     private fun setBindings() {
         viewModel.listOfGames
             .subscribe {
-                Log.d("test123", it.toString())
+                gameListAdapter.gameList = it
             }
             .addTo(disposeBag)
     }

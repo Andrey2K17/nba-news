@@ -67,6 +67,13 @@ dependencies {
     implementation "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
+    implementation 'com.kirich1409.svgplugin:glide4:1.0.0'
+    implementation 'com.caverock:androidsvg:1.2.1'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
