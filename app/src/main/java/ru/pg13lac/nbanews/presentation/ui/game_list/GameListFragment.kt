@@ -1,7 +1,6 @@
 package ru.pg13lac.nbanews.presentation.ui.game_list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.disposables.CompositeDisposable
@@ -37,7 +36,7 @@ class GameListFragment : BaseFragment() {
     private fun setBindings() {
         viewModel.listOfGames
             .subscribe {
-                gameListAdapter.gameList = it
+                gameListAdapter.mDataList = it
             }
             .addTo(disposeBag)
     }

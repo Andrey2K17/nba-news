@@ -3,18 +3,17 @@ package ru.pg13lac.nbanews.presentation.ui.game_list
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.game_item.view.*
 import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.common.GlideApp
 import ru.pg13lac.nbanews.common.inflate
 import ru.pg13lac.nbanews.domain.entity.GameItem
-import kotlin.properties.Delegates
+import ru.pg13lac.nbanews.presentation.ui.base.BaseAdapter
+import ru.pg13lac.nbanews.presentation.ui.base.BaseViewHolder
 
-class GameListAdapter : RecyclerView.Adapter<GameListAdapter.ViewHolder>() {
-    var gameList: List<GameItem> by Delegates.observable(listOf()) { _, _, _ ->
-        notifyDataSetChanged()
-    }
+class GameListAdapter : BaseAdapter<GameItem>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<GameItem> =
+        parent.inflate(R.layout.game_item).let(::ViewHolder)
 
     private fun setImage(team: String, imageView: ImageView) {
         GlideApp.with(imageView.context)
@@ -23,27 +22,18 @@ class GameListAdapter : RecyclerView.Adapter<GameListAdapter.ViewHolder>() {
             .into(imageView)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        parent.inflate(R.layout.game_item).let(::ViewHolder)
-
-    override fun getItemCount(): Int = gameList.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(gameList[position])
-    }
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(game: GameItem) {
+    inner class ViewHolder(itemView: View) : BaseViewHolder<GameItem>(itemView) {
+        override fun bind(model: GameItem) {
             with(itemView) {
-                tvGameStatus.text = game.game_status
-                tvLeftTeamName.text = game.left_team_name
-                tvLeftTeamPts.text = game.left_team_pts
-                tvRightTeamName.text = game.right_team_name
-                tvRightTeamPts.text = game.right_team_pts
-                ivRightTeam.setImageResource(R.drawable.ic_game_list)
-                setImage(game.left_img, ivLeftTeam)
-                setImage(game.right_img, ivRightTeam)
+                tvGameStatus.text = model.game_status
+                tvLeftTeamName.text = model.left_team_name
+                tvLeftTeamPts.text = model.left_team_pts
+                tvRightTeamName.text = model.right_team_name
+                tvRightTeamPts.text = model.right_team_pts
+                setImage(model.left_img, ivLeftTeam)
+                setImage(model.right_img, ivRightTeam)
             }
         }
     }
+
 }
