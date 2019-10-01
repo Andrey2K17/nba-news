@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewGame"
+    style="@style/CardView.Light"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivLeftTeam"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:contentDescription="left team" />
+
+        <TextView
+            android:id="@+id/tvLeftTeamName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/ivLeftTeam"
+            app:layout_constraintStart_toStartOf="@id/ivLeftTeam"
+            app:layout_constraintTop_toBottomOf="@id/ivLeftTeam"
+            tools:text="left team name" />
+
+        <TextView
+            android:id="@+id/tvLeftTeamPts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/ivLeftTeam"
+            app:layout_constraintStart_toEndOf="@id/ivLeftTeam"
+            app:layout_constraintTop_toTopOf="@id/ivLeftTeam"
+            tools:text="left team pts" />
+
+        <TextView
+            android:id="@+id/tvGameStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="game status" />
+
+
+        <ImageView
+            android:id="@+id/ivRightTeam"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:contentDescription="right team" />
+
+        <TextView
+            android:id="@+id/tvRightTeamName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/ivRightTeam"
+            app:layout_constraintStart_toStartOf="@id/ivRightTeam"
+            app:layout_constraintTop_toBottomOf="@+id/ivRightTeam"
+            tools:text="right team name" />
+
+        <TextView
+            android:id="@+id/tvRightTeamPts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/ivRightTeam"
+            app:layout_constraintEnd_toStartOf="@id/ivRightTeam"
+            app:layout_constraintTop_toTopOf="@id/ivRightTeam"
+            tools:text="right team pts" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
