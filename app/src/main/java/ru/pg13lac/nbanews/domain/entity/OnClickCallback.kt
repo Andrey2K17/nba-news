@@ -1,5 +1,5 @@
 package ru.pg13lac.nbanews.domain.entity
 
 interface OnClickCallback {
-    fun routeTo(data: String)
+    fun routeTo(data: GameDetailsInfo)
 }

@@ -2,6 +2,7 @@ package ru.pg13lac.nbanews.presentation.ui.game_list
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.disposables.CompositeDisposable
@@ -9,6 +10,7 @@ import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_game_list.*
 import ru.pg13lac.nbanews.App
 import ru.pg13lac.nbanews.R
+import ru.pg13lac.nbanews.domain.entity.GameDetailsInfo
 import ru.pg13lac.nbanews.domain.entity.OnClickCallback
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
 import ru.pg13lac.nbanews.presentation.viewModel.game_list.GameListViewModel
@@ -31,7 +33,7 @@ class GameListFragment : BaseFragment() {
 
         gameListAdapter = GameListAdapter()
         gameListAdapter.attachCallback(object : OnClickCallback {
-            override fun routeTo(data: String) {
+            override fun routeTo(data: GameDetailsInfo) {
                 routeToDetails(data)
             }
 
@@ -41,9 +43,8 @@ class GameListFragment : BaseFragment() {
         viewModel.getGames("01.21.18")
     }
 
-    fun routeToDetails(data: String) {
-        val bundle = Bundle()
-        bundle.putString("gameId", data)
+    fun routeToDetails(gameInfo: GameDetailsInfo) {
+        val bundle = bundleOf("gameInfo" to gameInfo)
         findNavController().navigate(R.id.actionToGameDetails, bundle)
     }
 
