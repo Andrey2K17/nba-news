@@ -9,11 +9,11 @@ import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import ru.pg13lac.nbanews.domain.entity.GameItem
 import ru.pg13lac.nbanews.domain.entity.Games
-import ru.pg13lac.nbanews.domain.interactor.GameListInteractor
+import ru.pg13lac.nbanews.domain.interactor.GamesInteractor
 import javax.inject.Inject
 
 class GameListViewModel @Inject constructor(
-    private val interactor: GameListInteractor
+    private val interactor: GamesInteractor
 ) : ViewModel() {
     val listOfGames: BehaviorSubject<List<GameItem>> = BehaviorSubject.create()
     val isLoading: PublishSubject<Boolean> = PublishSubject.create()
