@@ -9,7 +9,15 @@
         android:id="@+id/gameListFragment"
         android:name="ru.pg13lac.nbanews.presentation.ui.game_list.GameListFragment"
         android:label="fragment_game_list"
-        tools:layout="@layout/fragment_game_list" />
+        tools:layout="@layout/fragment_game_list" >
+        <action
+            android:id="@+id/actionToGameDetails"
+            app:destination="@id/gameDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
     <fragment
         android:id="@+id/teamsTableFragment"
         android:name="ru.pg13lac.nbanews.presentation.ui.teams_table.TeamsTableFragment"
@@ -20,4 +28,9 @@
         android:name="ru.pg13lac.nbanews.presentation.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/gameDetailsFragment"
+        android:name="ru.pg13lac.nbanews.presentation.ui.game_details.GameDetailsFragment"
+        android:label="fragment_game_details"
+        tools:layout="@layout/fragment_game_details" />
 </navigation>

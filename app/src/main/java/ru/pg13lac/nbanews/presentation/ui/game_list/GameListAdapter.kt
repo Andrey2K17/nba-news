@@ -8,12 +8,19 @@ import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.common.GlideApp
 import ru.pg13lac.nbanews.common.inflate
 import ru.pg13lac.nbanews.domain.entity.GameItem
+import ru.pg13lac.nbanews.domain.entity.OnClickCallback
 import ru.pg13lac.nbanews.presentation.ui.base.BaseAdapter
 import ru.pg13lac.nbanews.presentation.ui.base.BaseViewHolder
 
 class GameListAdapter : BaseAdapter<GameItem>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<GameItem> =
         parent.inflate(R.layout.game_item).let(::ViewHolder)
+
+    private var callback: OnClickCallback? = null
+
+    fun attachCallback(callback: OnClickCallback) {
+        this.callback = callback
+    }
 
     private fun setImage(team: String, imageView: ImageView) {
         GlideApp.with(imageView.context)
@@ -25,6 +32,9 @@ class GameListAdapter : BaseAdapter<GameItem>() {
     inner class ViewHolder(itemView: View) : BaseViewHolder<GameItem>(itemView) {
         override fun bind(model: GameItem) {
             with(itemView) {
+                itemView.setOnClickListener {
+                    callback?.routeTo(model.gameId)
+                }
                 tvGameStatus.text = model.game_status
                 tvLeftTeamName.text = model.left_team_name
                 tvLeftTeamPts.text = model.left_team_pts
