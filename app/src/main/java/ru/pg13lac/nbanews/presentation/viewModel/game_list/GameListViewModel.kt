@@ -24,6 +24,7 @@ class GameListViewModel @Inject constructor(
     private val disposable = CompositeDisposable()
 
     private fun mapGames(games: Games) {
+        reset()
         for (i in 0 until games.resultSets[1].rowSet!!.size - 1 step 2) {
             list.add(
                 GameItem(
@@ -55,5 +56,11 @@ class GameListViewModel @Inject constructor(
                     isError.onNext(true)
                 }
             ).addTo(disposable)
+    }
+
+    private fun reset() {
+        listOfGames.onNext(emptyList())
+        disposable.clear()
+        list.clear()
     }
 }

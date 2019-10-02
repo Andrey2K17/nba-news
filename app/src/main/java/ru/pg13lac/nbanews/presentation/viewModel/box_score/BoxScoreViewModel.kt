@@ -24,6 +24,7 @@ class BoxScoreViewModel @Inject constructor(
     private val disposable = CompositeDisposable()
 
     private fun mapToBoxScore(game: Games) {
+        reset()
         for (i in game.resultSets[0].rowSet!!.indices) {
             list.add(
                 BoxScore(
@@ -54,5 +55,11 @@ class BoxScoreViewModel @Inject constructor(
                     isError.onNext(true)
                 }
             ).addTo(disposable)
+    }
+
+    private fun reset() {
+        list.clear()
+        boxScore.onNext(emptyList())
+        disposable.clear()
     }
 }

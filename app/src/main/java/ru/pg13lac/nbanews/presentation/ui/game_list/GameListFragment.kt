@@ -30,7 +30,6 @@ class GameListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         App.instance.component.inject(this)
-        setBindings()
 
         gameListAdapter.attachCallback(object : OnClickCallback {
             override fun routeTo(data: GameDetailsInfo) {
@@ -47,10 +46,29 @@ class GameListFragment : BaseFragment() {
         findNavController().navigate(R.id.actionToGameDetails, bundle)
     }
 
-    private fun setBindings() {
+    override fun setListeners() {
+        srlGameList.setOnRefreshListener {
+            viewModel.getGames("01.22.18")
+        }
+    }
+
+    override fun setModelBindings() {
         viewModel.listOfGames
             .subscribe {
                 gameListAdapter.mDataList = it
+            }
+            .addTo(disposeBag)
+
+        viewModel.isLoading
+            .subscribe { isLoading ->
+                srlGameList.isRefreshing = isLoading
+            }
+            .addTo(disposeBag)
+
+        viewModel.isError
+            .filter { it }
+            .subscribe {
+                showMessage(R.string.error_data_loading)
             }
             .addTo(disposeBag)
     }
