@@ -2,13 +2,12 @@ package ru.pg13lac.nbanews.di
 
 import dagger.Module
 import dagger.Provides
-import ru.pg13lac.nbanews.data.repository.GameListRepository
-import ru.pg13lac.nbanews.domain.interactor.GameListInteractor
+import ru.pg13lac.nbanews.data.repository.GamesRepository
+import ru.pg13lac.nbanews.domain.interactor.GamesInteractor
 
 @Module
 class InteractorModule {
     @Provides
-    fun provideGameListInteractor(repository: GameListRepository): GameListInteractor {
-        return GameListInteractor(repository)
-    }
+    fun provideGameListInteractor(repository: GamesRepository): GamesInteractor =
+        GamesInteractor(repository)
 }

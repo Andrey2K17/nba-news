@@ -1,4 +1,4 @@
-package ru.pg13lac.nbanews.presentation.viewModel.game_list
+package ru.pg13lac.nbanews.presentation.viewModel.box_score
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -7,49 +7,48 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
-import ru.pg13lac.nbanews.domain.entity.GameItem
+import ru.pg13lac.nbanews.domain.entity.BoxScore
 import ru.pg13lac.nbanews.domain.entity.Games
 import ru.pg13lac.nbanews.domain.interactor.GamesInteractor
 import javax.inject.Inject
 
-class GameListViewModel @Inject constructor(
+class BoxScoreViewModel @Inject constructor(
     private val interactor: GamesInteractor
 ) : ViewModel() {
-    val listOfGames: BehaviorSubject<List<GameItem>> = BehaviorSubject.create()
+    val boxScore: BehaviorSubject<List<BoxScore>> = BehaviorSubject.create()
     val isLoading: PublishSubject<Boolean> = PublishSubject.create()
     val isError: PublishSubject<Boolean> = PublishSubject.create()
 
-    private var list = mutableListOf<GameItem>()
+    private val list = mutableListOf<BoxScore>()
 
     private val disposable = CompositeDisposable()
 
-    private fun mapGames(games: Games) {
+    private fun mapToBoxScore(game: Games) {
         reset()
-        for (i in 0 until games.resultSets[1].rowSet!!.size - 1 step 2) {
+        for (i in game.resultSets[0].rowSet!!.indices) {
             list.add(
-                GameItem(
-                    games.resultSets[1].rowSet!![i][4],
-                    games.resultSets[1].rowSet!![i + 1][4],
-                    games.resultSets[1].rowSet!![i][6],
-                    games.resultSets[1].rowSet!![i + 1][6],
-                    games.resultSets[1].rowSet!![i][22],
-                    games.resultSets[1].rowSet!![i + 1][22],
-                    games.resultSets[0].rowSet!![i / 2][4],
-                    games.resultSets[1].rowSet!![i][2]
+                BoxScore(
+                    game.resultSets[0].rowSet!![i][2],
+                    game.resultSets[0].rowSet!![i][5].substringBefore(" "),
+                    game.resultSets[0].rowSet!![i][5].substringAfter(" "),
+                    game.resultSets[0].rowSet!![i][26],
+                    game.resultSets[0].rowSet!![i][4],
+                    game.resultSets[0].rowSet!![i][20],
+                    game.resultSets[0].rowSet!![i][21]
                 )
             )
         }
     }
 
-    fun getGames(day: String) {
-        interactor.getGames(day)
+    fun getBoxScore(gameId: String) {
+        interactor.getBoxScore(gameId)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { isLoading.onNext(true) }
             .doFinally { isLoading.onNext(false) }
             .subscribeBy(
                 onSuccess = {
-                    mapGames(it)
-                    listOfGames.onNext(list)
+                    mapToBoxScore(it)
+                    boxScore.onNext(list)
                     isError.onNext(false)
                 },
                 onError = {
@@ -59,8 +58,8 @@ class GameListViewModel @Inject constructor(
     }
 
     private fun reset() {
-        listOfGames.onNext(emptyList())
-        disposable.clear()
         list.clear()
+        boxScore.onNext(emptyList())
+        disposable.clear()
     }
 }
