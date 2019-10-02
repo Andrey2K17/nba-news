@@ -8,7 +8,6 @@ import ru.pg13lac.nbanews.data.service.ApiHolder
 @Module
 class RepositoryModule {
     @Provides
-    fun provideGameListRepository(apiHolder: ApiHolder): GamesRepository {
-        return GamesRepository(apiHolder.api)
-    }
+    fun provideGameListRepository(apiHolder: ApiHolder): GamesRepository =
+        GamesRepository(apiHolder.api)
 }

@@ -6,6 +6,7 @@ import javax.inject.Inject
 class GamesInteractor @Inject constructor (
     private val repository: GamesRepository
 ) {
-    fun getGames(day: String) =
-        repository.getGames(day)
+    fun getGames(day: String) = repository.getGames(day)
+
+    fun getBoxScore(gameId: String) = repository.getBoxScore(gameId)
 }

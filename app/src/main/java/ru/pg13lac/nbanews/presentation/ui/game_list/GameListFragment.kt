@@ -24,19 +24,18 @@ class GameListFragment : BaseFragment() {
 
     private val disposeBag = CompositeDisposable()
 
-    private lateinit var gameListAdapter: GameListAdapter
+    @Inject
+    lateinit var gameListAdapter: GameListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         App.instance.component.inject(this)
         setBindings()
 
-        gameListAdapter = GameListAdapter()
         gameListAdapter.attachCallback(object : OnClickCallback {
             override fun routeTo(data: GameDetailsInfo) {
                 routeToDetails(data)
             }
-
         })
         rvGameList.layoutManager = LinearLayoutManager(activity)
         rvGameList.adapter = gameListAdapter

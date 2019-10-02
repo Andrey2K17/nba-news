@@ -8,7 +8,6 @@ import ru.pg13lac.nbanews.domain.interactor.GamesInteractor
 @Module
 class InteractorModule {
     @Provides
-    fun provideGameListInteractor(repository: GamesRepository): GamesInteractor {
-        return GamesInteractor(repository)
-    }
+    fun provideGameListInteractor(repository: GamesRepository): GamesInteractor =
+        GamesInteractor(repository)
 }

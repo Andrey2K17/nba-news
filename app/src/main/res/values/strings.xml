@@ -8,4 +8,9 @@
     <string name="hello_blank_fragment1">Hello blank fragment1</string>
     <string name="summary">SUMMARY</string>
     <string name="box_score">BOX SCORE</string>
+    <string name="name">name</string>
+    <string name="surname">surname</string>
+    <string name="pts">pts</string>
+    <string name="rebound">rebound</string>
+    <string name="assist">assist</string>
 </resources>
