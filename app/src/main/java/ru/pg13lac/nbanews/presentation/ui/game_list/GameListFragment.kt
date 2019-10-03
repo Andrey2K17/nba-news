@@ -10,8 +10,9 @@ import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_game_list.*
 import ru.pg13lac.nbanews.App
 import ru.pg13lac.nbanews.R
-import ru.pg13lac.nbanews.domain.entity.GameDetailsInfo
+import ru.pg13lac.nbanews.domain.entity.GameItem
 import ru.pg13lac.nbanews.domain.entity.OnClickCallback
+import ru.pg13lac.nbanews.domain.entity.TeamPointsForQuarter
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
 import ru.pg13lac.nbanews.presentation.viewModel.game_list.GameListViewModel
 import javax.inject.Inject
@@ -27,13 +28,15 @@ class GameListFragment : BaseFragment() {
     @Inject
     lateinit var gameListAdapter: GameListAdapter
 
+    private var teamPointsForQuarterList: List<TeamPointsForQuarter>? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         App.instance.component.inject(this)
 
         gameListAdapter.attachCallback(object : OnClickCallback {
-            override fun routeTo(data: GameDetailsInfo) {
-                routeToDetails(data)
+            override fun routeTo(gameId: String) {
+                routeToDetails(gameId)
             }
         })
         rvGameList.layoutManager = LinearLayoutManager(activity)
@@ -41,8 +44,10 @@ class GameListFragment : BaseFragment() {
         viewModel.getGames("01.21.18")
     }
 
-    fun routeToDetails(gameInfo: GameDetailsInfo) {
-        val bundle = bundleOf("gameInfo" to gameInfo)
+    fun routeToDetails(gameId: String) {
+        val bundle = bundleOf(
+            "gameInfo" to teamPointsForQuarterList?.first { it.game_id == gameId }
+        )
         findNavController().navigate(R.id.actionToGameDetails, bundle)
     }
 
@@ -55,7 +60,8 @@ class GameListFragment : BaseFragment() {
     override fun setModelBindings() {
         viewModel.listOfGames
             .subscribe {
-                gameListAdapter.mDataList = it
+                gameListAdapter.mDataList = it.gameScoreList as List<GameItem>
+                teamPointsForQuarterList = it.teamPointsForQuarterList
             }
             .addTo(disposeBag)
 

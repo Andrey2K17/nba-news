@@ -33,7 +33,7 @@ class BoxScoreFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         App.instance.component.inject(this)
-        gameInfo = arguments?.getParcelable("game") as GameDetailsInfo
+        gameInfo = arguments?.getParcelable("gameInfo") as GameDetailsInfo
 
         tlBoxScore.getTabAt(0)?.text = gameInfo?.leftTeam
         tlBoxScore.getTabAt(1)?.text = gameInfo?.rightTeam
@@ -95,9 +95,11 @@ class BoxScoreFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(gameInfo: GameDetailsInfo): BoxScoreFragment {
+        fun newInstance(
+            gameInfo: GameDetailsInfo
+        ): BoxScoreFragment {
             val fragment = BoxScoreFragment()
-            val bundle = bundleOf("game" to gameInfo)
+            val bundle = bundleOf("gameInfo" to gameInfo)
             fragment.arguments = bundle
             return fragment
         }

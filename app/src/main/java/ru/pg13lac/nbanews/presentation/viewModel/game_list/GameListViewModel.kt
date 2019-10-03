@@ -9,33 +9,54 @@ import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import ru.pg13lac.nbanews.domain.entity.GameItem
 import ru.pg13lac.nbanews.domain.entity.Games
+import ru.pg13lac.nbanews.domain.entity.MatchResults
+import ru.pg13lac.nbanews.domain.entity.TeamPointsForQuarter
 import ru.pg13lac.nbanews.domain.interactor.GamesInteractor
 import javax.inject.Inject
 
 class GameListViewModel @Inject constructor(
     private val interactor: GamesInteractor
 ) : ViewModel() {
-    val listOfGames: BehaviorSubject<List<GameItem>> = BehaviorSubject.create()
+    val listOfGames: BehaviorSubject<MatchResults> = BehaviorSubject.create()
     val isLoading: PublishSubject<Boolean> = PublishSubject.create()
     val isError: PublishSubject<Boolean> = PublishSubject.create()
 
     private var list = mutableListOf<GameItem>()
+    private var quarterList = mutableListOf<TeamPointsForQuarter>()
 
     private val disposable = CompositeDisposable()
 
     private fun mapGames(games: Games) {
+        val result = games.resultSets[1].rowSet!!
         reset()
         for (i in 0 until games.resultSets[1].rowSet!!.size - 1 step 2) {
             list.add(
                 GameItem(
-                    games.resultSets[1].rowSet!![i][4],
-                    games.resultSets[1].rowSet!![i + 1][4],
-                    games.resultSets[1].rowSet!![i][6],
-                    games.resultSets[1].rowSet!![i + 1][6],
-                    games.resultSets[1].rowSet!![i][22],
-                    games.resultSets[1].rowSet!![i + 1][22],
-                    games.resultSets[0].rowSet!![i / 2][4],
-                    games.resultSets[1].rowSet!![i][2]
+                    result[i][4],
+                    result[i + 1][4],
+                    result[i][6],
+                    result[i + 1][6],
+                    result[i][22],
+                    result[i + 1][22],
+                    result[i / 2][4],
+                    result[i][2]
+                )
+            )
+            quarterList.add(
+                TeamPointsForQuarter(
+                    result[i][8],
+                    result[i][9],
+                    result[i][10],
+                    result[i][11],
+                    result[i][22],
+                    result[i + 1][8],
+                    result[i + 1][9],
+                    result[i + 1][10],
+                    result[i + 1][11],
+                    result[i + 1][22],
+                    result[i][2],
+                    result[i][6],
+                    result[i + 1][6]
                 )
             )
         }
@@ -49,7 +70,7 @@ class GameListViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = {
                     mapGames(it)
-                    listOfGames.onNext(list)
+                    listOfGames.onNext(MatchResults(list, quarterList))
                     isError.onNext(false)
                 },
                 onError = {
@@ -59,7 +80,7 @@ class GameListViewModel @Inject constructor(
     }
 
     private fun reset() {
-        listOfGames.onNext(emptyList())
+        listOfGames.onNext(MatchResults(emptyList(), emptyList()))
         disposable.clear()
         list.clear()
     }
