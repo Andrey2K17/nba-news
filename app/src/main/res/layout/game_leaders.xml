@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivLeftPlayer"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivRightPlayer"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvStatsCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/ivLeftPlayer"
+            app:layout_constraintEnd_toStartOf="@id/ivRightPlayer"
+            app:layout_constraintStart_toEndOf="@id/ivLeftPlayer"
+            app:layout_constraintTop_toTopOf="@id/ivLeftPlayer"
+            tools:text="POINTS" />
+
+        <TextView
+            android:id="@+id/tvLeftPlayerAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivLeftPlayer"
+            app:layout_constraintStart_toEndOf="@id/ivLeftPlayer"
+            app:layout_constraintTop_toTopOf="@id/ivLeftPlayer"
+            tools:text="27" />
+
+        <TextView
+            android:id="@+id/tvRightPlayerAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivRightPlayer"
+            app:layout_constraintEnd_toStartOf="@id/ivRightPlayer"
+            app:layout_constraintTop_toTopOf="@id/ivRightPlayer"
+            tools:text="44" />
+
+        <View
+            android:id="@+id/vLineGameLeadersCenter"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/ivRightPlayer"
+            app:layout_constraintEnd_toStartOf="@id/ivRightPlayer"
+            app:layout_constraintStart_toEndOf="@id/ivLeftPlayer" />
+
+        <View
+            android:id="@+id/vLineGameLeadersLeft"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/ivRightPlayer"
+            app:layout_constraintEnd_toEndOf="@id/ivLeftPlayer"
+            app:layout_constraintStart_toStartOf="@id/ivLeftPlayer" />
+
+        <View
+            android:id="@+id/vLineGameLeadersRight"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/ivRightPlayer"
+            app:layout_constraintEnd_toEndOf="@id/ivRightPlayer"
+            app:layout_constraintStart_toStartOf="@id/ivRightPlayer" />
+
+        <TextView
+            android:id="@+id/tvLeftPlayerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/ivLeftPlayer"
+            app:layout_constraintTop_toBottomOf="@id/vLineGameLeadersRight"
+            tools:text="James Harden" />
+
+        <TextView
+            android:id="@+id/tvRightPlayerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/ivRightPlayer"
+            app:layout_constraintTop_toBottomOf="@id/vLineGameLeadersRight"
+            tools:text="Paul George" />
+
+        <TextView
+            android:id="@+id/tvLeftTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/ivLeftPlayer"
+            app:layout_constraintStart_toStartOf="@id/ivLeftPlayer"
+            app:layout_constraintTop_toBottomOf="@id/tvLeftPlayerName"
+            tools:text="HOU" />
+
+        <TextView
+            android:id="@+id/tvRightTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/ivRightPlayer"
+            app:layout_constraintStart_toStartOf="@id/ivRightPlayer"
+            app:layout_constraintTop_toBottomOf="@id/tvRightPlayerName"
+            tools:text="LAC" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

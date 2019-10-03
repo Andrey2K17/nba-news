@@ -5,6 +5,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_game_details.*
 import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.domain.entity.GameDetailsInfo
+import ru.pg13lac.nbanews.domain.entity.GameLeaders
 import ru.pg13lac.nbanews.domain.entity.TeamPointsForQuarter
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
 import ru.pg13lac.nbanews.presentation.ui.box_score.BoxScoreFragment
@@ -19,10 +20,12 @@ class GameDetailsFragment : BaseFragment() {
         val teamPointsForQuarter =
             arguments?.getParcelable("gameInfo") as TeamPointsForQuarter
 
+        val gameLeaders = arguments?.get("gameLeaders") as List<GameLeaders>
+
         val adapter = GameDetailsViewPagerAdapter(childFragmentManager)
 
         adapter.addFragment(
-            SummaryFragment.newInstance(teamPointsForQuarter),
+            SummaryFragment.newInstance(teamPointsForQuarter, gameLeaders),
             getString(R.string.summary)
         )
         adapter.addFragment(

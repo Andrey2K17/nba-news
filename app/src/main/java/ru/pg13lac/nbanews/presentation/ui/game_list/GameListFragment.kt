@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.fragment_game_list.*
 import ru.pg13lac.nbanews.App
 import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.domain.entity.GameItem
+import ru.pg13lac.nbanews.domain.entity.GameLeaders
 import ru.pg13lac.nbanews.domain.entity.OnClickCallback
 import ru.pg13lac.nbanews.domain.entity.TeamPointsForQuarter
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
@@ -29,6 +30,7 @@ class GameListFragment : BaseFragment() {
     lateinit var gameListAdapter: GameListAdapter
 
     private var teamPointsForQuarterList: List<TeamPointsForQuarter>? = null
+    private var gameLeadersList: List<GameLeaders>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,7 +48,8 @@ class GameListFragment : BaseFragment() {
 
     fun routeToDetails(gameId: String) {
         val bundle = bundleOf(
-            "gameInfo" to teamPointsForQuarterList?.first { it.game_id == gameId }
+            "gameInfo" to teamPointsForQuarterList?.first { it.game_id == gameId },
+            "gameLeaders" to gameLeadersList?.filter { it.game_id == gameId }
         )
         findNavController().navigate(R.id.actionToGameDetails, bundle)
     }
@@ -62,6 +65,7 @@ class GameListFragment : BaseFragment() {
             .subscribe {
                 gameListAdapter.mDataList = it.gameScoreList as List<GameItem>
                 teamPointsForQuarterList = it.teamPointsForQuarterList
+                gameLeadersList = it.gameLeaders
             }
             .addTo(disposeBag)
 

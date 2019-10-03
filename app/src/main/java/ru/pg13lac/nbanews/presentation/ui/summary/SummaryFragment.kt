@@ -1,12 +1,14 @@
 package ru.pg13lac.nbanews.presentation.ui.summary
 
-
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import kotlinx.android.synthetic.main.fragment_summary.*
 import kotlinx.android.synthetic.main.quarter_table.view.*
 import ru.pg13lac.nbanews.R
+import ru.pg13lac.nbanews.common.setGameLeadersInView
+import ru.pg13lac.nbanews.domain.entity.CommonTypeStats
+import ru.pg13lac.nbanews.domain.entity.GameLeaders
 import ru.pg13lac.nbanews.domain.entity.TeamPointsForQuarter
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
 
@@ -17,6 +19,8 @@ class SummaryFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val gameInfo = arguments?.getParcelable("gameInfo") as TeamPointsForQuarter
+
+        val gameLeaders = arguments?.get("gameLeaders") as List<GameLeaders>
 
         with(qtSummary) {
             tvLeftTeamQ1.text = gameInfo.left_team_q1
@@ -32,12 +36,22 @@ class SummaryFragment : BaseFragment() {
             tvLeftTeam.text = gameInfo.leftTeam
             tvRightTeam.text = gameInfo.rightTeam
         }
+
+        setGameLeadersInView(glSummaryPoints, gameLeaders, CommonTypeStats.POINT)
+        setGameLeadersInView(glSummaryRebounds, gameLeaders, CommonTypeStats.REBOUND)
+        setGameLeadersInView(glSummaryAssists, gameLeaders, CommonTypeStats.ASSIST)
     }
 
     companion object {
-        fun newInstance(teamPointsForQuarter: TeamPointsForQuarter): SummaryFragment {
+        fun newInstance(
+            teamPointsForQuarter: TeamPointsForQuarter,
+            gameLeaders: List<GameLeaders>
+        ): SummaryFragment {
             val fragment = SummaryFragment()
-            val bundle = bundleOf("gameInfo" to teamPointsForQuarter)
+            val bundle = bundleOf(
+                "gameInfo" to teamPointsForQuarter,
+                "gameLeaders" to gameLeaders
+            )
             fragment.arguments = bundle
             return fragment
         }
