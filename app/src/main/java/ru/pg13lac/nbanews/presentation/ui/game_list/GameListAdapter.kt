@@ -10,8 +10,9 @@ import ru.pg13lac.nbanews.domain.entity.GameItem
 import ru.pg13lac.nbanews.domain.entity.OnClickCallback
 import ru.pg13lac.nbanews.presentation.ui.base.BaseAdapter
 import ru.pg13lac.nbanews.presentation.ui.base.BaseViewHolder
+import javax.inject.Inject
 
-class GameListAdapter : BaseAdapter<GameItem>() {
+class GameListAdapter @Inject constructor() : BaseAdapter<GameItem>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<GameItem> =
         parent.inflate(R.layout.game_item).let(::ViewHolder)
 

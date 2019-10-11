@@ -9,8 +9,9 @@ import ru.pg13lac.nbanews.common.setPlayerImage
 import ru.pg13lac.nbanews.domain.entity.BoxScore
 import ru.pg13lac.nbanews.presentation.ui.base.BaseAdapter
 import ru.pg13lac.nbanews.presentation.ui.base.BaseViewHolder
+import javax.inject.Inject
 
-class BoxScoreAdapter : BaseAdapter<BoxScore>() {
+class BoxScoreAdapter @Inject constructor() : BaseAdapter<BoxScore>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<BoxScore> =
         parent.inflate(R.layout.box_score_item).let(::ViewHolder)
 
