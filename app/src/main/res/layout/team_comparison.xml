@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clTeamComparison"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/layout_bg"
+    android:padding="8dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivLeftTeamComparison"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivRightTeamComparison"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ru.pg13lac.nbanews.presentation.components.ComparisonLine
+        android:id="@+id/clFieldFoals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ivLeftTeamComparison" />
+
+    <ru.pg13lac.nbanews.presentation.components.ComparisonLine
+        android:id="@+id/cl3Pointers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clFieldFoals" />
+
+    <ru.pg13lac.nbanews.presentation.components.ComparisonLine
+        android:id="@+id/clFreeThrows"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cl3Pointers" />
+
+    <ru.pg13lac.nbanews.presentation.components.ComparisonLine
+        android:id="@+id/clAssists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clFreeThrows" />
+
+    <ru.pg13lac.nbanews.presentation.components.ComparisonLine
+        android:id="@+id/clTotalRebounds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clAssists" />
+
+    <ru.pg13lac.nbanews.presentation.components.ComparisonLine
+        android:id="@+id/clOffensiveRebounds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clTotalRebounds" />
+
+    <ru.pg13lac.nbanews.presentation.components.ComparisonLine
+        android:id="@+id/clDefensiveRebounds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clOffensiveRebounds" />
+
+    <ru.pg13lac.nbanews.presentation.components.ComparisonLine
+        android:id="@+id/clSteals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clDefensiveRebounds" />
+
+    <ru.pg13lac.nbanews.presentation.components.ComparisonLine
+        android:id="@+id/clBlocks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clSteals" />
+
+    <ru.pg13lac.nbanews.presentation.components.ComparisonLine
+        android:id="@+id/clTurnovers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/clBlocks" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
