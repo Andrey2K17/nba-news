@@ -7,5 +7,6 @@ import kotlinx.android.parcel.RawValue
 @Parcelize
 data class MatchResults(
     val gameScoreList: @RawValue List<GameItem>? = null,
-    val teamPointsForQuarterList: List<TeamPointsForQuarter>
+    val teamPointsForQuarterList: List<TeamPointsForQuarter>,
+    val gameLeaders: List<GameLeaders>
 ) : Parcelable

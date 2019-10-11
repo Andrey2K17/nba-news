@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clComparisonLine"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvNameComparison"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="FIELD GOALS" />
+
+    <View
+        android:id="@+id/vLeftLine"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toStartOf="@id/vRightLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLeftTeamMadeStatsIndicator" />
+
+    <View
+        android:id="@+id/vRightLine"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@id/vLeftLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vLeftLine"
+        app:layout_constraintTop_toBottomOf="@id/tvLeftTeamMadeStatsIndicator" />
+
+    <TextView
+        android:id="@+id/tvLeftTeamMadeStatsIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="44" />
+
+    <TextView
+        android:id="@+id/tvLeftTeamThrowsAttempt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tvLeftTeamMadeStatsIndicator"
+        app:layout_constraintTop_toTopOf="@id/tvLeftTeamMadeStatsIndicator"
+        tools:text="/81" />
+
+    <TextView
+        android:id="@+id/tvLeftTeamThrowsPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tvLeftTeamThrowsAttempt"
+        app:layout_constraintTop_toTopOf="@id/tvLeftTeamMadeStatsIndicator"
+        tools:text="(54.3%)" />
+
+    <TextView
+        android:id="@+id/tvRightTeamThrowsAttempt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvRightTeamMadeStatsIndicator"
+        tools:text="/91" />
+
+    <TextView
+        android:id="@+id/tvRightTeamMadeStatsIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/tvRightTeamThrowsAttempt"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="51" />
+
+    <TextView
+        android:id="@+id/tvRightTeamThrowsPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/tvRightTeamMadeStatsIndicator"
+        app:layout_constraintTop_toTopOf="@id/tvRightTeamMadeStatsIndicator"
+        tools:text="(56.0%)" />
+</androidx.constraintlayout.widget.ConstraintLayout>

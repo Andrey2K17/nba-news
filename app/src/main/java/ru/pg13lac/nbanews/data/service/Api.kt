@@ -29,7 +29,7 @@ interface Api {
         ]
     )
     @GET("stats/boxscoretraditionalv2/?StartPeriod=1&EndPeriod=10&StartRange=1&EndRange=10&RangeType=1")
-    fun getBoxScore(
+    fun getDetails(
         @Query("gameid") gameid: String
     ): Single<Games>
 }

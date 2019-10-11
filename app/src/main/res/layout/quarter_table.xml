@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/layout_bg"
     android:orientation="vertical"
     android:padding="8dp">
 
@@ -53,133 +55,129 @@
 
     <View
         android:id="@+id/vLine1"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/tvQ1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="5dp"
         android:background="@color/black"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvQ1" />
 
     <View
         android:id="@+id/vLine2"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/tvLeftTeam"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="5dp"
         android:background="@color/gray"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvLeftTeam" />
 
     <View
         android:id="@+id/vLine3"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/tvRightTeam"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="5dp"
         android:background="@color/gray"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvRightTeam" />
 
     <TextView
         android:id="@+id/tvLeftTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="CELTICS"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvQ1" />
+        app:layout_constraintTop_toBottomOf="@id/tvQ1"
+        tools:text="CELTICS" />
 
     <TextView
         android:id="@+id/tvRightTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="LAKERS"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvLeftTeam" />
+        app:layout_constraintTop_toBottomOf="@id/tvLeftTeam"
+        tools:text="LAKERS" />
 
     <TextView
         android:id="@+id/tvLeftTeamQ1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="23"
         app:layout_constraintStart_toStartOf="@id/tvQ1"
-        app:layout_constraintTop_toTopOf="@id/tvLeftTeam" />
+        app:layout_constraintTop_toTopOf="@id/tvLeftTeam"
+        tools:text="23" />
 
     <TextView
         android:id="@+id/tvLeftTeamQ2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="11"
         app:layout_constraintEnd_toStartOf="@id/tvLeftTeamQ3"
         app:layout_constraintStart_toEndOf="@id/tvLeftTeamQ1"
-        app:layout_constraintTop_toTopOf="@id/tvLeftTeam" />
+        app:layout_constraintTop_toTopOf="@id/tvLeftTeam"
+        tools:text="11" />
 
     <TextView
         android:id="@+id/tvLeftTeamQ3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="45"
         app:layout_constraintEnd_toStartOf="@id/tvLeftTeamQ4"
         app:layout_constraintStart_toEndOf="@id/tvLeftTeamQ2"
-        app:layout_constraintTop_toTopOf="@id/tvLeftTeam" />
+        app:layout_constraintTop_toTopOf="@id/tvLeftTeam"
+        tools:text="45" />
 
     <TextView
         android:id="@+id/tvLeftTeamQ4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="94"
         app:layout_constraintEnd_toStartOf="@id/tvLeftTeamTOT"
         app:layout_constraintStart_toEndOf="@id/tvLeftTeamQ3"
-        app:layout_constraintTop_toTopOf="@id/tvLeftTeam" />
+        app:layout_constraintTop_toTopOf="@id/tvLeftTeam"
+        tools:text="94" />
 
     <TextView
         android:id="@+id/tvLeftTeamTOT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="190"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvLeftTeam" />
+        app:layout_constraintTop_toTopOf="@id/tvLeftTeam"
+        tools:text="190" />
 
     <TextView
         android:id="@+id/tvRightTeamQ1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="33"
         app:layout_constraintStart_toStartOf="@id/tvQ1"
-        app:layout_constraintTop_toTopOf="@id/tvRightTeam" />
+        app:layout_constraintTop_toTopOf="@id/tvRightTeam"
+        tools:text="33" />
 
     <TextView
         android:id="@+id/tvRightTeamQ2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="44"
         app:layout_constraintEnd_toStartOf="@id/tvRightTeamQ3"
         app:layout_constraintStart_toEndOf="@id/tvRightTeamQ1"
-        app:layout_constraintTop_toTopOf="@id/tvRightTeam" />
+        app:layout_constraintTop_toTopOf="@id/tvRightTeam"
+        tools:text="44" />
 
     <TextView
         android:id="@+id/tvRightTeamQ3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="44"
         app:layout_constraintEnd_toStartOf="@id/tvRightTeamQ4"
         app:layout_constraintStart_toEndOf="@id/tvRightTeamQ2"
-        app:layout_constraintTop_toTopOf="@id/tvRightTeam" />
+        app:layout_constraintTop_toTopOf="@id/tvRightTeam"
+        tools:text="44" />
 
     <TextView
         android:id="@+id/tvRightTeamQ4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12"
         app:layout_constraintEnd_toStartOf="@id/tvRightTeamTOT"
         app:layout_constraintStart_toEndOf="@id/tvRightTeamQ3"
-        app:layout_constraintTop_toTopOf="@id/tvRightTeam" />
+        app:layout_constraintTop_toTopOf="@id/tvRightTeam"
+        tools:text="12" />
 
     <TextView
         android:id="@+id/tvRightTeamTOT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="233"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvRightTeam" />
-
+        app:layout_constraintTop_toTopOf="@id/tvRightTeam"
+        tools:text="233" />
 </androidx.constraintlayout.widget.ConstraintLayout>

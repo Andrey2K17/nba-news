@@ -41,7 +41,7 @@ class BoxScoreViewModel @Inject constructor(
     }
 
     fun getBoxScore(gameId: String) {
-        interactor.getBoxScore(gameId)
+        interactor.getGameDetails(gameId)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { isLoading.onNext(true) }
             .doFinally { isLoading.onNext(false) }
