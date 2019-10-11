@@ -1,20 +1,26 @@
 package ru.pg13lac.nbanews.di
 
+import android.content.Context
+import dagger.BindsInstance
 import dagger.Component
-import ru.pg13lac.nbanews.presentation.ui.box_score.BoxScoreFragment
-import ru.pg13lac.nbanews.presentation.ui.game_list.GameListFragment
+import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
+import ru.pg13lac.nbanews.App
+import javax.inject.Singleton
 
 @Component(
     modules = [
+        AndroidInjectionModule::class,
         CommonModule::class,
-        RepositoryModule::class,
-        InteractorModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        AppModule::class
     ]
 )
-interface AppComponent {
-
-    //Fragments
-    fun inject(fragment: GameListFragment)
-    fun inject(fragment: BoxScoreFragment)
+@Singleton
+interface AppComponent : AndroidInjector<App> {
+    @Component.Builder
+    abstract class Builder : AndroidInjector.Builder<App>() {
+        @BindsInstance
+        abstract fun context(context: Context): Builder
+    }
 }

@@ -1,13 +1,14 @@
 package ru.pg13lac.nbanews.presentation.ui.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.pg13lac.nbanews.R
+import ru.pg13lac.nbanews.presentation.ui.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
