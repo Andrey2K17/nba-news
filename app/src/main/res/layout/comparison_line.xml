@@ -11,10 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        tools:text="FIELD GOALS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="FIELD GOALS" />
 
     <View
         android:id="@+id/vLeftLine"
@@ -43,35 +43,35 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textStyle="bold"
-        tools:text="44"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="44" />
 
     <TextView
         android:id="@+id/tvLeftTeamThrowsAttempt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        tools:text="/81"
         app:layout_constraintStart_toEndOf="@id/tvLeftTeamMadeStatsIndicator"
-        app:layout_constraintTop_toTopOf="@id/tvLeftTeamMadeStatsIndicator" />
+        app:layout_constraintTop_toTopOf="@id/tvLeftTeamMadeStatsIndicator"
+        tools:text="/81" />
 
     <TextView
         android:id="@+id/tvLeftTeamThrowsPercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="(54.3%)"
         app:layout_constraintStart_toEndOf="@id/tvLeftTeamThrowsAttempt"
-        app:layout_constraintTop_toTopOf="@id/tvLeftTeamMadeStatsIndicator" />
+        app:layout_constraintTop_toTopOf="@id/tvLeftTeamMadeStatsIndicator"
+        tools:text="(54.3%)" />
 
     <TextView
         android:id="@+id/tvRightTeamThrowsAttempt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="/91"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvRightTeamMadeStatsIndicator" />
+        app:layout_constraintTop_toTopOf="@id/tvRightTeamMadeStatsIndicator"
+        tools:text="/91" />
 
     <TextView
         android:id="@+id/tvRightTeamMadeStatsIndicator"
@@ -79,16 +79,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textStyle="bold"
-        tools:text="51"
         app:layout_constraintEnd_toStartOf="@id/tvRightTeamThrowsAttempt"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="51" />
 
     <TextView
         android:id="@+id/tvRightTeamThrowsPercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="(56.0%)"
         app:layout_constraintEnd_toStartOf="@id/tvRightTeamMadeStatsIndicator"
-        app:layout_constraintTop_toTopOf="@id/tvRightTeamMadeStatsIndicator" />
-
+        app:layout_constraintTop_toTopOf="@id/tvRightTeamMadeStatsIndicator"
+        tools:text="(56.0%)" />
 </androidx.constraintlayout.widget.ConstraintLayout>
