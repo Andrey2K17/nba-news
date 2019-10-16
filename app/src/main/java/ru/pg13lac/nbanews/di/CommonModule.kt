@@ -4,8 +4,6 @@ import dagger.Module
 import dagger.Provides
 import ru.pg13lac.nbanews.data.service.Api
 import ru.pg13lac.nbanews.data.service.ApiHolder
-import ru.pg13lac.nbanews.presentation.ui.box_score.BoxScoreAdapter
-import ru.pg13lac.nbanews.presentation.ui.game_list.GameListAdapter
 
 @Module
 class CommonModule {

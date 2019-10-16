@@ -1,7 +1,5 @@
 package ru.pg13lac.nbanews.di
 
-import androidx.lifecycle.ViewModel
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import ru.pg13lac.nbanews.domain.interactor.GamesInteractor
