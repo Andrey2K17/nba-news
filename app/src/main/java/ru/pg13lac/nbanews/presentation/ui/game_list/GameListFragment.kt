@@ -10,10 +10,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_game_list.*
 import ru.pg13lac.nbanews.R
-import ru.pg13lac.nbanews.domain.entity.GameItem
-import ru.pg13lac.nbanews.domain.entity.GameLeaders
+import ru.pg13lac.nbanews.common.isVisible
 import ru.pg13lac.nbanews.domain.entity.OnClickCallback
-import ru.pg13lac.nbanews.domain.entity.TeamPointsForQuarter
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
 import ru.pg13lac.nbanews.presentation.viewModel.game_list.GameListViewModel
 import java.text.SimpleDateFormat
@@ -31,11 +29,11 @@ class GameListFragment : BaseFragment() {
     @Inject
     lateinit var gameListAdapter: GameListAdapter
 
-    private var teamPointsForQuarterList: List<TeamPointsForQuarter>? = null
-    private var gameLeadersList: List<GameLeaders>? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (gameListAdapter.mDataList.isEmpty()) {
+            viewModel.getGames(showSelectedDate())
+        }
 
         gameListAdapter.attachCallback(object : OnClickCallback {
             override fun routeTo(gameId: String) {
@@ -46,16 +44,9 @@ class GameListFragment : BaseFragment() {
         rvGameList.adapter = gameListAdapter
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.getGames(showSelectedDate())
-    }
 
     fun routeToDetails(gameId: String) {
-        val bundle = bundleOf(
-            "gameInfo" to teamPointsForQuarterList?.first { it.game_id == gameId },
-            "gameLeaders" to gameLeadersList?.filter { it.game_id == gameId }
-        )
+        val bundle = bundleOf("gameId" to gameId, "date" to showSelectedDate())
         findNavController().navigate(R.id.actionToGameDetails, bundle)
     }
 
@@ -64,7 +55,7 @@ class GameListFragment : BaseFragment() {
         val cal = Calendar.getInstance()
         cal.add(Calendar.DATE, -1)
         val dateBefore1Days = cal.time
-        val dateFormat = SimpleDateFormat("MM.dd.yy")
+        val dateFormat = SimpleDateFormat("yyyyMMdd")
         return dateFormat.format(dateBefore1Days)
     }
 
@@ -77,15 +68,13 @@ class GameListFragment : BaseFragment() {
     override fun setModelBindings() {
         viewModel.listOfGames
             .subscribe {
-                gameListAdapter.mDataList = it.gameScoreList as List<GameItem>
-                teamPointsForQuarterList = it.teamPointsForQuarterList
-                gameLeadersList = it.gameLeaders
+                gameListAdapter.mDataList = it
             }
             .addTo(disposeBag)
 
         viewModel.isLoading
             .subscribe { isLoading ->
-                srlGameList.isRefreshing = isLoading
+                srlGameList?.isRefreshing = isLoading
             }
             .addTo(disposeBag)
 
@@ -93,6 +82,11 @@ class GameListFragment : BaseFragment() {
             .filter { it }
             .subscribe {
                 showMessage(R.string.error_data_loading)
+            }
+            .addTo(disposeBag)
+        viewModel.emptyList
+            .subscribe {
+                tvEmptyList.isVisible = it
             }
             .addTo(disposeBag)
     }

@@ -9,6 +9,7 @@ import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.common.setTeamImage
 import ru.pg13lac.nbanews.domain.entity.GameDetails
 import ru.pg13lac.nbanews.domain.entity.Shots
+import ru.pg13lac.nbanews.domain.entity.Pair
 
 class TeamComparison @JvmOverloads constructor(
     context: Context,
@@ -18,7 +19,6 @@ class TeamComparison @JvmOverloads constructor(
     init {
         LayoutInflater.from(context).inflate(R.layout.team_comparison, this, true)
     }
-
 
     fun setTeamComparisonView(gameDetails: GameDetails?) {
         gameDetails?.teamComparison?.first?.TEAM_ABBREVIATION?.let {

@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import kotlinx.android.synthetic.main.comparison_line.view.*
 import ru.pg13lac.nbanews.R
+import ru.pg13lac.nbanews.domain.entity.Pair
 import ru.pg13lac.nbanews.domain.entity.Shots
 
 class ComparisonLine @JvmOverloads constructor(
@@ -26,7 +27,7 @@ class ComparisonLine @JvmOverloads constructor(
         pair.first.throwsAttempted?.let { tvLeftTeamThrowsAttempt.text = "/$it" }
 
         pair.first.throwsPercentage?.let {
-            tvLeftTeamThrowsPercentage.text = "(" + it.drop(2).dropLast(1) + "%)"
+            tvLeftTeamThrowsPercentage.text = "($it%)"
         }
 
         tvRightTeamMadeStatsIndicator.text = pair.second.throwsMade
@@ -34,17 +35,17 @@ class ComparisonLine @JvmOverloads constructor(
         pair.second.throwsAttempted?.let { tvRightTeamThrowsAttempt.text = "/$it" }
 
         pair.second.throwsPercentage?.let {
-            tvRightTeamThrowsPercentage.text = "(" + it.drop(2).dropLast(1) + "%)"
+            tvRightTeamThrowsPercentage.text = "($it%)"
         }
 
         if (pair.first.throwsMade !== null && pair.second.throwsMade !== null) {
             if (!pair.first.throwsPercentage.isNullOrBlank()) {
                 setLine(
-                    (pair.first.throwsPercentage!!.drop(2).toFloat() / 10).toString(),
-                    (pair.second.throwsPercentage!!.drop(2).toFloat() / 10).toString()
+                    (pair.first.throwsPercentage.toFloat() / 10).toString(),
+                    (pair.second.throwsPercentage!!.toFloat() / 10).toString()
                 )
             } else {
-                setLine(pair.first.throwsMade!!, pair.second.throwsMade!!)
+                setLine(pair.first.throwsMade, pair.second.throwsMade)
             }
 
         }

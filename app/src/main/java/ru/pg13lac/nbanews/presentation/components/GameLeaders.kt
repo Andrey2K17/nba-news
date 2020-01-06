@@ -7,9 +7,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.game_leaders.view.*
 import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.common.setPlayerImage
-import ru.pg13lac.nbanews.domain.entity.CommonTypeStats
+import ru.pg13lac.nbanews.domain.entity.*
 import ru.pg13lac.nbanews.domain.entity.GameLeaders
-import ru.pg13lac.nbanews.domain.entity.GameLeadersType
 
 class GameLeaders @JvmOverloads constructor(
     context: Context,
@@ -20,39 +19,35 @@ class GameLeaders @JvmOverloads constructor(
         LayoutInflater.from(context).inflate(R.layout.game_leaders, this, true)
     }
 
-    fun setGameLeadersInView(gameLeaders: List<GameLeaders>, type: CommonTypeStats) {
-        val playerStats = mutableListOf<GameLeadersType>()
+    fun setGameLeadersInView(gameLeaders: Pair<GameLeaders, GameLeaders>, type: CommonTypeStats) {
         var statsCategory = ""
-        if (gameLeaders.isNotEmpty()) {
-            when (type) {
-                CommonTypeStats.POINT -> {
-                    for (i in 0..1) {
-                        playerStats.add(gameLeaders[i].player_pts)
-                    }
-                    statsCategory = context.getString(R.string.point_category)
-                }
-                CommonTypeStats.REBOUND -> {
-                    for (i in 0..1) {
-                        playerStats.add(gameLeaders[i].player_reb)
-                    }
-                    statsCategory = context.getString(R.string.rebound_category)
-                }
-                CommonTypeStats.ASSIST -> {
-                    for (i in 0..1) {
-                        playerStats.add(gameLeaders[i].player_ast)
-                    }
-                    statsCategory = context.getString(R.string.assist_category)
-                }
+        var playerLeftTypeStats: GameLeadersTypeStats? = null
+        var playerRightTypeStats: GameLeadersTypeStats? = null
+        when (type) {
+            CommonTypeStats.POINT -> {
+                playerLeftTypeStats = gameLeaders.first.player_pts
+                playerRightTypeStats = gameLeaders.second.player_pts
+                statsCategory = context.getString(R.string.point_category)
             }
-            tvLeftPlayerName.text = playerStats[1].name
-            tvRightPlayerName.text = playerStats[0].name
-            tvLeftPlayerAmount.text = playerStats[1].amount
-            tvRightPlayerAmount.text = playerStats[0].amount
-            tvLeftTeam.text = gameLeaders[1].team_name
-            tvRightTeam.text = gameLeaders[0].team_name
-            setPlayerImage(playerStats[1].id, ivLeftPlayer)
-            setPlayerImage(playerStats[0].id, ivRightPlayer)
-            tvStatsCategory.text = statsCategory
+            CommonTypeStats.REBOUND -> {
+                playerLeftTypeStats = gameLeaders.first.player_reb
+                playerRightTypeStats = gameLeaders.second.player_reb
+                statsCategory = context.getString(R.string.rebound_category)
+            }
+            CommonTypeStats.ASSIST -> {
+                playerLeftTypeStats = gameLeaders.first.player_ast
+                playerRightTypeStats = gameLeaders.second.player_ast
+                statsCategory = context.getString(R.string.assist_category)
+            }
         }
+        tvLeftPlayerName.text = playerLeftTypeStats?.name ?: ""
+        tvRightPlayerName.text = playerRightTypeStats?.name ?: ""
+        tvLeftPlayerAmount.text = playerLeftTypeStats?.amount ?: ""
+        tvRightPlayerAmount.text = playerRightTypeStats?.amount ?: ""
+        tvLeftTeam.text = gameLeaders.first.team_name
+        tvRightTeam.text = gameLeaders.second.team_name
+        setPlayerImage(playerLeftTypeStats?.id ?: "", ivLeftPlayer)
+        setPlayerImage(playerRightTypeStats?.id ?: "", ivRightPlayer)
+        tvStatsCategory.text = statsCategory
     }
 }
