@@ -6,10 +6,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 
-object ApiHolder {
-    private val URL = "https://stats.nba.com/"
+class ApiHolder {
+    private val URL = "https://data.nba.net/data/10s/prod/v1/"
     private val httpClientBuilder = OkHttpClient.Builder()
     private val logging = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BODY)
