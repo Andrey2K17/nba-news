@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class GameLeaders(
+data class GameLeasders(
     val game_id: String? = null,
     val player_pts: Points? = null,
     val player_reb: Rebounds? = null,
