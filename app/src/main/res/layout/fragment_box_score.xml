@@ -10,9 +10,6 @@
         android:id="@+id/tlBoxScore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/srlBoxScore"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabGravity="fill">
 
@@ -26,14 +23,15 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/srlBoxScore"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/clpbBoxScore"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleLarge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tlBoxScore">
+        app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBoxScore"
@@ -41,5 +39,4 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tlBoxScore" />
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
