@@ -7,91 +7,34 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
-import ru.pg13lac.nbanews.domain.entity.*
+import ru.pg13lac.nbanews.common.nameTeams
+import ru.pg13lac.nbanews.domain.entity.GameItem
+import ru.pg13lac.nbanews.domain.entity.scoreboard.Scoreboard
 import ru.pg13lac.nbanews.domain.interactor.GamesInteractor
 import javax.inject.Inject
 
 class GameListViewModel @Inject constructor(
     private val interactor: GamesInteractor
 ) : ViewModel() {
-    val listOfGames: BehaviorSubject<MatchResults> = BehaviorSubject.create()
+    val listOfGames: BehaviorSubject<List<GameItem>> = BehaviorSubject.create()
     val isLoading: PublishSubject<Boolean> = PublishSubject.create()
     val isError: PublishSubject<Boolean> = PublishSubject.create()
-
-    private var list = mutableListOf<GameItem>()
-    private var quarterList = mutableListOf<TeamPointsForQuarter>()
-    private var gameLeaders = mutableListOf<GameLeaders>()
+    val emptyList: PublishSubject<Boolean> = PublishSubject.create()
 
     private val disposable = CompositeDisposable()
 
-    private fun mapGames(games: Games) {
-        val result = games.resultSets[1].rowSet!!
+    fun getGames(date: String) {
         reset()
-        for (i in games.resultSets[7].rowSet!!.indices) {
-            gameLeaders.add(
-                GameLeaders(
-                    game_id = games.resultSets[7].rowSet!![i][0],
-                    player_pts = Points(
-                        games.resultSets[7].rowSet!![i][5],
-                        games.resultSets[7].rowSet!![i][6],
-                        games.resultSets[7].rowSet!![i][7]
-                    ),
-                    player_reb = Rebounds(
-                        games.resultSets[7].rowSet!![i][8],
-                        games.resultSets[7].rowSet!![i][9],
-                        games.resultSets[7].rowSet!![i][10]
-                    ),
-                    player_ast = Assists(
-                        games.resultSets[7].rowSet!![i][11],
-                        games.resultSets[7].rowSet!![i][12],
-                        games.resultSets[7].rowSet!![i][13]
-                    ),
-                    team_name = games.resultSets[7].rowSet!![i][4]
-                )
-            )
-        }
-        for (i in 0 until games.resultSets[1].rowSet!!.size - 1 step 2) {
-            list.add(
-                GameItem(
-                    left_img = result[i][4],
-                    right_img = result[i + 1][4],
-                    left_team_name = result[i][6],
-                    right_team_name = result[i + 1][6],
-                    left_team_pts = result[i][22],
-                    right_team_pts = result[i + 1][22],
-                    game_status = result[i / 2][4],
-                    gameId = result[i][2]
-                )
-            )
-            quarterList.add(
-                TeamPointsForQuarter(
-                    result[i][8],
-                    result[i][9],
-                    result[i][10],
-                    result[i][11],
-                    result[i][22],
-                    result[i + 1][8],
-                    result[i + 1][9],
-                    result[i + 1][10],
-                    result[i + 1][11],
-                    result[i + 1][22],
-                    result[i][2],
-                    result[i][6],
-                    result[i + 1][6]
-                )
-            )
-        }
-    }
-
-    fun getGames(day: String) {
-        interactor.getGames(day)
+        interactor.getGames(date)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { isLoading.onNext(true) }
             .doFinally { isLoading.onNext(false) }
             .subscribeBy(
                 onSuccess = {
-                    mapGames(it)
-                    listOfGames.onNext(MatchResults(list, quarterList, gameLeaders))
+                    listOfGames.onNext(mapGames(it))
+                    if (it.games.isEmpty()){
+                        emptyList.onNext(true)
+                    }
                     isError.onNext(false)
                 },
                 onError = {
@@ -100,9 +43,31 @@ class GameListViewModel @Inject constructor(
             ).addTo(disposable)
     }
 
+    private fun mapGames(scoreboard: Scoreboard): MutableList<GameItem> {
+        val scoreboardList = mutableListOf<GameItem>()
+        for (i in 0 until scoreboard.games.size - 1) {
+            scoreboardList.add(
+                GameItem(
+                    left_img = scoreboard.games[i].hTeam.triCode,
+                    right_img = scoreboard.games[i].vTeam.triCode,
+                    left_team_name = nameTeams[scoreboard.games[i].hTeam.teamId],
+                    right_team_name = nameTeams[scoreboard.games[i].vTeam.teamId],
+                    left_team_pts = scoreboard.games[i].hTeam.score,
+                    right_team_pts = scoreboard.games[i].vTeam.score,
+                    game_status = scoreboard.games[i].statusNum.toString(),
+                    gameId = scoreboard.games[i].gameId
+                )
+            )
+        }
+        return scoreboardList
+    }
+
     private fun reset() {
-        listOfGames.onNext(MatchResults(emptyList(), emptyList(), emptyList()))
+        listOfGames.onNext(emptyList())
         disposable.clear()
-        list.clear()
+    }
+
+    override fun onCleared() {
+        disposable.clear()
     }
 }

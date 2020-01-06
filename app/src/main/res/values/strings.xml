@@ -27,4 +27,5 @@
     <string name="blocks">BLOCKS</string>
     <string name="turnovers">TURNOVERS</string>
     <string name="team_comparison">Team comparison</string>
+    <string name="emptyGameList">На сегодняшний день игр нет</string>
 </resources>

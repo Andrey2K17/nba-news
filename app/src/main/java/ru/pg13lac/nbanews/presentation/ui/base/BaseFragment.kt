@@ -18,16 +18,9 @@ abstract class BaseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? = container?.inflate(layoutRes)
 
-//    override fun onStart() {
-//        super.onStart()
-//        setListeners()
-//        setModelBindings()
-//    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setListeners()
         setModelBindings()
+        setListeners()
     }
 
     override fun onAttach(context: Context) {

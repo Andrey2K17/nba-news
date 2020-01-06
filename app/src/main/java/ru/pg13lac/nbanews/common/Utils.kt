@@ -24,3 +24,9 @@ fun setTeamImage(team: String, imageView: ImageView) {
         .centerCrop()
         .into(imageView)
 }
+
+var View.isVisible: Boolean
+    set(value) {
+        this.visibility = if (value) View.VISIBLE else View.GONE
+    }
+    get() = this.visibility == View.VISIBLE

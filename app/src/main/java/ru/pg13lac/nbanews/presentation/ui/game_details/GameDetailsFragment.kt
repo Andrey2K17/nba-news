@@ -7,13 +7,10 @@ import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_game_details.*
 import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.domain.entity.GameDetails
-import ru.pg13lac.nbanews.domain.entity.GameLeaders
-import ru.pg13lac.nbanews.domain.entity.Summary
-import ru.pg13lac.nbanews.domain.entity.TeamPointsForQuarter
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
 import ru.pg13lac.nbanews.presentation.ui.box_score.BoxScoreFragment
 import ru.pg13lac.nbanews.presentation.ui.summary.SummaryFragment
-import ru.pg13lac.nbanews.presentation.viewModel.summary.GameDetailsViewModel
+import ru.pg13lac.nbanews.presentation.viewModel.game_details.GameDetailsViewModel
 import javax.inject.Inject
 
 class GameDetailsFragment : BaseFragment() {
@@ -25,27 +22,19 @@ class GameDetailsFragment : BaseFragment() {
     private var gameDetails: GameDetails? = null
 
     private val disposeBag = CompositeDisposable()
-    private lateinit var teamPointsForQuarter: TeamPointsForQuarter
-    private lateinit var gameLeaders: List<GameLeaders>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        teamPointsForQuarter = arguments?.getParcelable("gameInfo") as TeamPointsForQuarter
-        viewModel.getSummary(teamPointsForQuarter.game_id)
-        gameLeaders = arguments?.get("gameLeaders") as List<GameLeaders>
-
+        val gameId = arguments?.getString("gameId")
+        val date = arguments?.getString("date")
+        viewModel.getGameDetails(date!!, gameId!!)
 
         val adapter = GameDetailsViewPagerAdapter(childFragmentManager)
 
-        adapter.addFragment(
-            SummaryFragment.newInstance(Summary(teamPointsForQuarter, gameLeaders, gameDetails)),
-            getString(R.string.summary)
-        )
-        adapter.addFragment(
-            BoxScoreFragment.newInstance(gameDetails),
-            getString(R.string.box_score)
-        )
+        adapter.addFragment(SummaryFragment(), getString(R.string.summary))
+        adapter.addFragment(BoxScoreFragment(), getString(R.string.box_score))
+
         vpGameDetails.adapter = adapter
         tlGameDetails.setupWithViewPager(vpGameDetails)
     }
@@ -57,5 +46,17 @@ class GameDetailsFragment : BaseFragment() {
                 gameDetails = it
             }
             .addTo(disposeBag)
+
+        viewModel.isError
+            .filter { it }
+            .subscribe {
+                showMessage(R.string.error_data_loading)
+            }
+            .addTo(disposeBag)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        disposeBag.clear()
     }
 }
