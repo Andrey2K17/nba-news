@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/settings"
-    app:startDestination="@id/settingsFragment">
+    android:id="@+id/more"
+    app:startDestination="@id/moreFragment">
 
     <fragment
-        android:id="@+id/settingsFragment"
+        android:id="@+id/moreFragment"
         android:name="ru.pg13lac.nbanews.presentation.ui.more.MoreFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
 </navigation>

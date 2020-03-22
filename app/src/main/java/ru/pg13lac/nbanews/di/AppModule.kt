@@ -29,7 +29,7 @@ interface AppModule {
     fun boxScoreFragmentInjector(): BoxScoreFragment
 
     @ContributesAndroidInjector
-    fun settingsFragmentInjection(): MoreFragment
+    fun moreFragmentInjection(): MoreFragment
 
     @ContributesAndroidInjector
     fun teamsTableFragmentInjection(): TeamsTableFragment
