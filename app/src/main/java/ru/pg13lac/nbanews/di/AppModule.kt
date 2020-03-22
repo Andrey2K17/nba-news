@@ -7,7 +7,7 @@ import ru.pg13lac.nbanews.presentation.ui.box_score.BoxScoreFragment
 import ru.pg13lac.nbanews.presentation.ui.game_details.GameDetailsFragment
 import ru.pg13lac.nbanews.presentation.ui.game_list.GameListFragment
 import ru.pg13lac.nbanews.presentation.ui.main.MainActivity
-import ru.pg13lac.nbanews.presentation.ui.settings.SettingsFragment
+import ru.pg13lac.nbanews.presentation.ui.more.MoreFragment
 import ru.pg13lac.nbanews.presentation.ui.summary.SummaryFragment
 import ru.pg13lac.nbanews.presentation.ui.teams_table.TeamsTableFragment
 
@@ -29,7 +29,7 @@ interface AppModule {
     fun boxScoreFragmentInjector(): BoxScoreFragment
 
     @ContributesAndroidInjector
-    fun settingsFragmentInjection(): SettingsFragment
+    fun settingsFragmentInjection(): MoreFragment
 
     @ContributesAndroidInjector
     fun teamsTableFragmentInjection(): TeamsTableFragment
