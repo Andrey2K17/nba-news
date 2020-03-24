@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NbaNews.iml" filepath="$PROJECT_DIR$/NbaNews.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NbaNews.iml" filepath="$PROJECT_DIR$/NbaNews.iml" group="NbaNews" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="NbaNews/app" />
     </modules>
   </component>
 </project>

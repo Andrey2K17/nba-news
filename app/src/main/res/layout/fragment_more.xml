@@ -6,13 +6,19 @@
     android:id="@+id/mainConstraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:padding="8dp"
     tools:context=".presentation.ui.more.MoreFragment">
 
-    <TextView
-        android:id="@+id/tvMore"
+    <ru.pg13lac.nbanews.presentation.components.MoreView
+        android:id="@+id/mvSelectFavoriteTeam"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/more"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="wrap_content"
+        app:image="@drawable/ic_ball"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:text="Выбор любимой команды" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
