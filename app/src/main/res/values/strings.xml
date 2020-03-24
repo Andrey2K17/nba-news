@@ -2,7 +2,7 @@
     <string name="app_name">NbaNews</string>
     <string name="game_list">Игры</string>
     <string name="teams_table">Таблица</string>
-    <string name="settings">Настройки</string>
+    <string name="more">Ещё</string>
 
     <string name="summary">SUMMARY</string>
     <string name="box_score">BOX SCORE</string>

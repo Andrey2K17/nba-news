@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainConstraint"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:padding="8dp"
+    tools:context=".presentation.ui.more.MoreFragment">
+
+    <ru.pg13lac.nbanews.presentation.components.MoreView
+        android:id="@+id/mvSelectFavoriteTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:image="@drawable/ic_ball"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:text="Выбор любимой команды" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
