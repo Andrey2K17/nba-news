@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import ru.pg13lac.nbanews.presentation.ui.box_score.BoxScoreFragment
+import ru.pg13lac.nbanews.presentation.ui.favorite_team.FavoriteTeamFragment
 import ru.pg13lac.nbanews.presentation.ui.game_details.GameDetailsFragment
 import ru.pg13lac.nbanews.presentation.ui.game_list.GameListFragment
 import ru.pg13lac.nbanews.presentation.ui.main.MainActivity
@@ -33,4 +34,7 @@ interface AppModule {
 
     @ContributesAndroidInjector
     fun teamsTableFragmentInjection(): TeamsTableFragment
+
+    @ContributesAndroidInjector
+    fun favoriteTeamFragmentInjection(): FavoriteTeamFragment
 }
