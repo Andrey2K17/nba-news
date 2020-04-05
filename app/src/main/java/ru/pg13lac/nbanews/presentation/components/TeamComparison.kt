@@ -37,8 +37,8 @@ class TeamComparison @JvmOverloads constructor(
             val (first, second) = it
             clFieldFoals.setView(
                 Pair(
-                    with(first!!) { Shots(FGM, FGA, FG_PCT) },
-                    with(second!!) { Shots(FGM, FGA, FG_PCT) }
+                    with(first) { Shots(FGM, FGA, FG_PCT) },
+                    with(second) { Shots(FGM, FGA, FG_PCT) }
                 ),
                 context.getString(R.string.field_goals)
             )

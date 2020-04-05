@@ -26,7 +26,7 @@ class GameListAdapter @Inject constructor() : BaseAdapter<GameItem>() {
         override fun bind(model: GameItem) {
             with(itemView) {
                 itemView.setOnClickListener {
-                    callback?.routeTo(model.gameId)
+                    callback?.routeTo(model.gameId, model.left_team_name, model.right_team_name)
                 }
                 tvGameStatus.text = model.game_status
                 tvLeftTeamName.text = model.left_team_name

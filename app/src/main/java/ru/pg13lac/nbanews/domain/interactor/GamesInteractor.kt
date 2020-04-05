@@ -9,4 +9,10 @@ class GamesInteractor @Inject constructor(private val repository: GamesRepositor
     fun getGameDetails(date: String, gameId: String) = repository.getGameDetails(date, gameId)
 
     fun getGames(date: String) = repository.getGames(date)
+
+    fun getTestGameDetails(gameId: String) = repository.getTestGameDetails(gameId)
+
+    fun getTestGameStatistic(gameId: String) = repository.getTestGameStatistic(gameId)
+
+    fun getTestPlayerStatistic(gameId: String) = repository.getTestPlayerStatistic(gameId)
 }

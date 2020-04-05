@@ -7,9 +7,8 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
-import ru.pg13lac.nbanews.common.nameTeams
 import ru.pg13lac.nbanews.domain.entity.GameItem
-import ru.pg13lac.nbanews.domain.entity.scoreboard.Scoreboard
+import ru.pg13lac.nbanews.domain.entity.testGames.TestGames
 import ru.pg13lac.nbanews.domain.interactor.GamesInteractor
 import javax.inject.Inject
 
@@ -32,7 +31,7 @@ class GameListViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = {
                     listOfGames.onNext(mapGames(it))
-                    if (it.games.isEmpty()){
+                    if (it.api.games.isEmpty()) {
                         emptyList.onNext(true)
                     }
                     isError.onNext(false)
@@ -43,19 +42,19 @@ class GameListViewModel @Inject constructor(
             ).addTo(disposable)
     }
 
-    private fun mapGames(scoreboard: Scoreboard): MutableList<GameItem> {
+    private fun mapGames(testGames: TestGames): MutableList<GameItem> {
         val scoreboardList = mutableListOf<GameItem>()
-        for (i in 0 until scoreboard.games.size - 1) {
+        for (i in testGames.api.games.indices) {
             scoreboardList.add(
                 GameItem(
-                    left_img = scoreboard.games[i].hTeam.triCode,
-                    right_img = scoreboard.games[i].vTeam.triCode,
-                    left_team_name = nameTeams[scoreboard.games[i].hTeam.teamId],
-                    right_team_name = nameTeams[scoreboard.games[i].vTeam.teamId],
-                    left_team_pts = scoreboard.games[i].hTeam.score,
-                    right_team_pts = scoreboard.games[i].vTeam.score,
-                    game_status = scoreboard.games[i].statusNum.toString(),
-                    gameId = scoreboard.games[i].gameId
+                    left_img = testGames.api.games[i].vTeam.shortName,
+                    right_img = testGames.api.games[i].hTeam.shortName,
+                    left_team_name = testGames.api.games[i].vTeam.nickName,
+                    right_team_name = testGames.api.games[i].hTeam.nickName,
+                    left_team_pts = testGames.api.games[i].vTeam.score.points,
+                    right_team_pts = testGames.api.games[i].hTeam.score.points,
+                    game_status = testGames.api.games[i].statusGame,
+                    gameId = testGames.api.games[i].gameId
                 )
             )
         }

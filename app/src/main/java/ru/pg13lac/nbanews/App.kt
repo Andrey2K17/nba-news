@@ -17,5 +17,6 @@ class App : DaggerApplication() {
 
     companion object {
         lateinit var instance: App
+        val TAG ="test123"
     }
 }

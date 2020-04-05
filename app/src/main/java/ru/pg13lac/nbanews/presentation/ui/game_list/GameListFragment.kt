@@ -2,6 +2,7 @@ package ru.pg13lac.nbanews.presentation.ui.game_list
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_game_list.*
+import ru.pg13lac.nbanews.App
 import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.common.isVisible
 import ru.pg13lac.nbanews.domain.entity.OnClickCallback
@@ -36,8 +38,8 @@ class GameListFragment : BaseFragment() {
         }
 
         gameListAdapter.attachCallback(object : OnClickCallback {
-            override fun routeTo(gameId: String) {
-                routeToDetails(gameId)
+            override fun routeTo(gameId: String, vTeam: String, hTeam: String) {
+                routeToDetails(gameId, vTeam, hTeam)
             }
         })
         rvGameList.layoutManager = LinearLayoutManager(activity)
@@ -45,8 +47,8 @@ class GameListFragment : BaseFragment() {
     }
 
 
-    fun routeToDetails(gameId: String) {
-        val bundle = bundleOf("gameId" to gameId, "date" to showSelectedDate())
+    fun routeToDetails(gameId: String, vTeam: String, hTeam: String) {
+        val bundle = bundleOf("gameId" to gameId, "vTeam" to vTeam, "hTeam" to hTeam)
         findNavController().navigate(R.id.actionToGameDetails, bundle)
     }
 
@@ -55,8 +57,9 @@ class GameListFragment : BaseFragment() {
         val cal = Calendar.getInstance()
         cal.add(Calendar.DATE, -1)
         val dateBefore1Days = cal.time
-        val dateFormat = SimpleDateFormat("yyyyMMdd")
-        return dateFormat.format(dateBefore1Days)
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+//        return dateFormat.format(dateBefore1Days)
+        return "2020-03-02"
     }
 
     override fun setListeners() {

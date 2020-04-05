@@ -1,11 +1,17 @@
 package ru.pg13lac.nbanews.presentation.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
 import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.common.setupWithNavController
+import ru.pg13lac.nbanews.data.repository.GameTestRepository
+import ru.pg13lac.nbanews.data.repository.GamesRepository
+import ru.pg13lac.nbanews.data.service.ApiHolder
 import ru.pg13lac.nbanews.presentation.ui.base.BaseActivity
 
 class MainActivity : BaseActivity() {
@@ -15,6 +21,12 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+//        val gamesRepository = GamesRepository(ApiHolder().api)
+//        gamesRepository.getTestGameDetails("7286")
+
+
+
 
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
