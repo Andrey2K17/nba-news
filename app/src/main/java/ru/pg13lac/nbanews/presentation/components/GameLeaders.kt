@@ -46,8 +46,8 @@ class GameLeaders @JvmOverloads constructor(
         tvRightPlayerAmount.text = playerRightTypeStats?.amount ?: ""
         tvLeftTeam.text = gameLeaders.first.team_name
         tvRightTeam.text = gameLeaders.second.team_name
-        setPlayerImage(playerLeftTypeStats?.name ?: "", ivLeftPlayer)
-        setPlayerImage(playerRightTypeStats?.name ?: "", ivRightPlayer)
+        setPlayerImage(playerLeftTypeStats?.id ?: "", ivLeftPlayer)
+        setPlayerImage(playerRightTypeStats?.id ?: "", ivRightPlayer)
         tvStatsCategory.text = statsCategory
     }
 }

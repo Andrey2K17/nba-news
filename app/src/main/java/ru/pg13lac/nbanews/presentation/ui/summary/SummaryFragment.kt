@@ -22,7 +22,7 @@ class SummaryFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val gameId = arguments?.getString("gameId")
-        gameId?.let { viewModel.getGamesDetails(it) }
+        gameId?.let { viewModel.getSummaryGameDetails(it) }
     }
 
     override fun setModelBindings() {

@@ -17,6 +17,6 @@ class App : DaggerApplication() {
 
     companion object {
         lateinit var instance: App
-        val TAG ="test123"
+        const val API_KEY = "5v24mc82amrxkwa4uyd5bw9r"
     }
 }

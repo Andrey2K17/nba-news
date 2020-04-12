@@ -13,7 +13,7 @@
     <string name="assist">assist</string>
     <string name="error_data_loading">Не удалось загрузить данные</string>
     <string name="game_leaders">Game Leaders</string>
-    <string name="point_category">PONTS</string>
+    <string name="point_category">POINTS</string>
     <string name="rebound_category">REBOUNDS</string>
     <string name="assist_category">ASSISTS</string>
     <string name="field_goals">FIELD GOALS</string>

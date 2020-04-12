@@ -1,12 +1,10 @@
 package ru.pg13lac.nbanews.common
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.request.RequestOptions
-import ru.pg13lac.nbanews.App
 import ru.pg13lac.nbanews.R
 
 fun ViewGroup.inflate(layoutRes: Int): View =
@@ -19,10 +17,9 @@ fun setTeamImage(team: String, imageView: ImageView) {
         .into(imageView)
 }
 
-fun setPlayerImage(name: String, imageView: ImageView) {
-    val newName = name.toLowerCase().trim().replace(" ", "-")
+fun setPlayerImage(playerId: String, imageView: ImageView) {
     GlideApp.with(imageView.context)
-        .load("https://allbasketball.org/templates/AB2014/images/players/260x190/${newName}.png")
+        .load("https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${playerId}.png")
         .apply(RequestOptions.centerCropTransform())
         .placeholder(R.drawable.ic_person)
         .into(imageView)
