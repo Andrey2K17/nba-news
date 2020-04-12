@@ -8,13 +8,13 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import ru.pg13lac.nbanews.domain.entity.*
-import ru.pg13lac.nbanews.domain.entity.testCompleteStats.TestCompleteStats
-import ru.pg13lac.nbanews.domain.entity.testPlayerStats.toGameDetails
-import ru.pg13lac.nbanews.domain.entity.testPlayerStats.toGameLeaders
-import ru.pg13lac.nbanews.domain.entity.testPlayerStats.toTeamPointsForQuarter
-import ru.pg13lac.nbanews.domain.entity.testGameDetails.TestGameDetails
-import ru.pg13lac.nbanews.domain.entity.testGameStatistic.TestGameStatistic
+import ru.pg13lac.nbanews.domain.entity.gameLeaders.GameBoxScoreLeaders
+import ru.pg13lac.nbanews.domain.entity.gameLeaders.toLeaders
+import ru.pg13lac.nbanews.domain.entity.summaryGameDetails.SummaryGameDetails
+import ru.pg13lac.nbanews.domain.entity.summaryGameDetails.toGameDetails
+import ru.pg13lac.nbanews.domain.entity.summaryGameDetails.toTeamPointsForQuarter
 import ru.pg13lac.nbanews.domain.interactor.GamesInteractor
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class SummaryGameDetailsViewModel @Inject constructor(
@@ -28,20 +28,23 @@ class SummaryGameDetailsViewModel @Inject constructor(
 
     private val disposable = CompositeDisposable()
 
-    fun getGamesDetails(gameId: String) {
+    fun getSummaryGameDetails(gameId: String) {
         reset()
-        interactor.getTestGameDetails(gameId).zipWith(
-            interactor.getTestGameStatistic(gameId),
-            BiFunction<TestGameDetails, TestGameStatistic, TestCompleteStats> {
-                    p0, p1 -> TestCompleteStats(p0, p1)
-            }).observeOn(AndroidSchedulers.mainThread())
+        interactor.getSummaryGameDetails(gameId).zipWith(
+            //На сервере ограничение один запрос в секунду
+            interactor.getGameBoxScore(gameId).delaySubscription(1, TimeUnit.SECONDS),
+            BiFunction<SummaryGameDetails, GameBoxScoreLeaders, FullGameDetails> { p0, p1 ->
+                FullGameDetails(p0, p1)
+            }
+        )
+            .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { isLoading.onNext(true) }
             .doFinally { isLoading.onNext(false) }
             .subscribeBy(
                 onSuccess = {
-                    gameDetails.onNext(it.toGameDetails())
-                    teamPointsForQuarter.onNext(it.toTeamPointsForQuarter())
-                    gameLeaders.onNext(it.toGameLeaders())
+                    gameDetails.onNext(it.summaryGameDetails.toGameDetails())
+                    teamPointsForQuarter.onNext(it.summaryGameDetails.toTeamPointsForQuarter())
+                    gameLeaders.onNext(it.gameBoxScoreLeaders.toLeaders())
                     isError.onNext(false)
                 },
                 onError = {
