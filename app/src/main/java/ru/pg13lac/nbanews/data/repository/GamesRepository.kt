@@ -5,8 +5,11 @@ import javax.inject.Inject
 
 class GamesRepository @Inject constructor(private val api: Api) {
 
-    fun getGameDetails(date: String, gameId: String) = api.getGameDetails(date, gameId)
+    fun getDailyGames(year: String, month: String, day: String) =
+        api.getDailyGames(year, month, day)
 
-    fun getGames(date: String) = api.getGames(date)
+    fun getSummaryGameDetails(gameId: String) = api.getSummaryGameDetails(gameId)
+
+    fun getGameBoxScore(gameId: String) = api.getGameBoxScore(gameId)
 }
 

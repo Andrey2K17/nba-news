@@ -1,9 +1,0 @@
-package ru.pg13lac.nbanews.domain.entity.gameDetails
-
-data class Arena(
-    val city: String,
-    val country: String,
-    val isDomestic: Boolean,
-    val name: String,
-    val stateAbbr: String
-)

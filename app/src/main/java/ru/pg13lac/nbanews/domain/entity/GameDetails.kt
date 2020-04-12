@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class GameDetails(
-    val boxScore: List<BoxScore>? = null,
-    val teamComparison: Pair<TeamComparison?, TeamComparison?>? = null,
+    val boxScore: Pair<MutableList<BoxScore>, MutableList<BoxScore>>? = null,
+    val teamComparison: Pair<TeamComparison, TeamComparison>? = null,
     val gameDetailsInfo: GameDetailsInfo? = null
 ) : Parcelable

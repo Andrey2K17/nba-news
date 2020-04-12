@@ -8,7 +8,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiHolder {
-    private val URL = "https://data.nba.net/data/10s/prod/v1/"
+    private val URL = "https://api.sportradar.us/"
     private val httpClientBuilder = OkHttpClient.Builder()
     private val logging = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BODY)

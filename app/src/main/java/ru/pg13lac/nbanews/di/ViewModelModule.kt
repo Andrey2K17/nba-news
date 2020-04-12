@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import ru.pg13lac.nbanews.domain.interactor.GamesInteractor
 import ru.pg13lac.nbanews.presentation.viewModel.game_list.GameListViewModel
-import ru.pg13lac.nbanews.presentation.viewModel.game_details.GameDetailsViewModel
+import ru.pg13lac.nbanews.presentation.viewModel.summary_game_details.SummaryGameDetailsViewModel
 import javax.inject.Singleton
 
 @Module
@@ -26,6 +26,6 @@ class ViewModelModule {
 
     @Singleton
     @Provides
-    fun provideGameDetailsViewModel(interactor: GamesInteractor): GameDetailsViewModel =
-        GameDetailsViewModel(interactor)
+    fun provideSummaryGameDetailsViewModel(interactor: GamesInteractor): SummaryGameDetailsViewModel =
+        SummaryGameDetailsViewModel(interactor)
 }
