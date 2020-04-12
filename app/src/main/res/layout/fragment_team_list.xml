@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.favorite_team.FavoriteTeamFragment">
+    android:background="@color/gray"
+    tools:context=".presentation.ui.team_list.TeamListFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTeamList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/game_leaders" />
+        android:layout_height="wrap_content" />
 
 </FrameLayout>
