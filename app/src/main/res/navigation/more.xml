@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteTeam"
-        android:name="ru.pg13lac.nbanews.presentation.ui.favorite_team.FavoriteTeamFragment"
+        android:name="ru.pg13lac.nbanews.presentation.ui.team_list.TeamListFragment"
         android:label="fragment_favorite_team"
-        tools:layout="@layout/fragment_favorite_team" />
+        tools:layout="@layout/fragment_team_list" />
 </navigation>
