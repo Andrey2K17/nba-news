@@ -3,16 +3,12 @@ package ru.pg13lac.nbanews.domain.interactor
 import ru.pg13lac.nbanews.data.repository.GamesRepository
 import javax.inject.Inject
 
-
 class GamesInteractor @Inject constructor(private val repository: GamesRepository) {
 
-    fun getGameDetails(date: String, gameId: String) = repository.getGameDetails(date, gameId)
+    fun getDailyGames(year: String, month: String, day: String) =
+        repository.getDailyGames(year, month, day)
 
-    fun getGames(date: String) = repository.getGames(date)
+    fun getSummaryGameDetails(gameId: String) = repository.getSummaryGameDetails(gameId)
 
-    fun getTestGameDetails(gameId: String) = repository.getTestGameDetails(gameId)
-
-    fun getTestGameStatistic(gameId: String) = repository.getTestGameStatistic(gameId)
-
-    fun getTestPlayerStatistic(gameId: String) = repository.getTestPlayerStatistic(gameId)
+    fun getGameBoxScore(gameId: String) = repository.getGameBoxScore(gameId)
 }
