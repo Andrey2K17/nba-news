@@ -13,9 +13,9 @@
     <string name="assist">assist</string>
     <string name="error_data_loading">Не удалось загрузить данные</string>
     <string name="game_leaders">Game Leaders</string>
-    <string name="point_category">POINTS</string>
-    <string name="rebound_category">REBOUNDS</string>
-    <string name="assist_category">ASSISTS</string>
+    <string name="point_category">ОЧКИ</string>
+    <string name="rebound_category">ПОДБОРЫ</string>
+    <string name="assist_category">ПЕРЕДАЧИ</string>
     <string name="field_goals">FIELD GOALS</string>
     <string name="three_pointers">3 POINTERS</string>
     <string name="free_throws">FREE THROWS</string>
@@ -28,4 +28,12 @@
     <string name="turnovers">TURNOVERS</string>
     <string name="team_comparison">Team comparison</string>
     <string name="emptyGameList">На сегодняшний день игр нет</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select">Выбрать</string>
+    <string name="yearFounded">Год основания: </string>
+    <string name="roster">Состав</string>
+    <string name="points">очк</string>
+    <string name="rebounds">под</string>
+    <string name="assist1">пер</string>
 </resources>

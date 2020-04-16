@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.team_profile.TeamProfileFragment">
+
+    <ImageView
+        android:id="@+id/ivTeamProfile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:contentDescription="team_image" />
+
+    <TextView
+        android:id="@+id/tvTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivTeamProfile"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="left team name" />
+
+    <TextView
+        android:id="@+id/tvFoundedTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/yearFounded"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/tvTeamName"
+        app:layout_constraintTop_toBottomOf="@id/tvTeamName"
+        tools:text="founded title" />
+
+    <TextView
+        android:id="@+id/tvFoundedYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tvFoundedTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTeamName"
+        tools:text="1922" />
+
+    <Button
+        android:id="@+id/btnSetFavoriteTeam"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/ic_star"
+        android:drawableLeft="@drawable/ic_star"
+        android:text="@string/select"
+        app:layout_constraintStart_toStartOf="@id/tvTeamName"
+        app:layout_constraintTop_toBottomOf="@id/tvFoundedTitle" />
+
+    <View
+        android:id="@+id/vLineTeamProfile"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSetFavoriteTeam" />
+
+    <TextView
+        android:id="@+id/tvRoster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/roster"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vLineTeamProfile" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRoster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@id/tvRoster" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

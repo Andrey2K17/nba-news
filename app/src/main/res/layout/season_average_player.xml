@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:padding="8dp"
+    android:layout_marginBottom="2dp"
+    >
+
+    <TextView
+        android:id="@+id/tvYearSeasonAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2001" />
+
+    <TextView
+        android:id="@+id/tvPointTitleSeasonAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/points"
+        app:layout_constraintEnd_toEndOf="@id/tvPointSeasonAverage"
+        app:layout_constraintStart_toStartOf="@id/tvPointSeasonAverage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="очк" />
+
+    <TextView
+        android:id="@+id/tvPointSeasonAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvYearSeasonAverage"
+        app:layout_constraintTop_toBottomOf="@id/tvPointTitleSeasonAverage"
+        tools:text="34.2" />
+
+    <View
+        android:id="@+id/tvLinePointsSeasonAverage"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvPointSeasonAverage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvReboundsTitleSeasonAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/rebounds"
+        app:layout_constraintEnd_toEndOf="@id/tvReboundSeasonAverage"
+        app:layout_constraintStart_toStartOf="@id/tvReboundSeasonAverage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="под" />
+
+    <TextView
+        android:id="@+id/tvReboundSeasonAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvLinePointsSeasonAverage"
+        app:layout_constraintTop_toBottomOf="@id/tvPointTitleSeasonAverage"
+        tools:text="14.2" />
+
+    <View
+        android:id="@+id/tvLineReboundsSeasonAverage"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvReboundSeasonAverage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAssistTitleSeasonAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/assist1"
+        app:layout_constraintEnd_toEndOf="@id/tvAssistSeasonAverage"
+        app:layout_constraintStart_toStartOf="@id/tvAssistSeasonAverage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="пер" />
+
+    <TextView
+        android:id="@+id/tvAssistSeasonAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvLineReboundsSeasonAverage"
+        app:layout_constraintTop_toBottomOf="@id/tvPointTitleSeasonAverage"
+        tools:text="14.1" />
+
+    <View
+        android:id="@+id/vLineSeasonAverage"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

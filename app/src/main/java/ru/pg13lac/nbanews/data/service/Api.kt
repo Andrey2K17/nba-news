@@ -6,7 +6,9 @@ import retrofit2.http.Path
 import ru.pg13lac.nbanews.App
 import ru.pg13lac.nbanews.domain.entity.dailyGames.DailyGames
 import ru.pg13lac.nbanews.domain.entity.gameLeaders.GameBoxScoreLeaders
+import ru.pg13lac.nbanews.domain.entity.playerProfile.PlayerProfile
 import ru.pg13lac.nbanews.domain.entity.summaryGameDetails.SummaryGameDetails
+import ru.pg13lac.nbanews.domain.entity.teamProfile.TeamProfile
 
 interface Api {
 
@@ -26,4 +28,14 @@ interface Api {
     fun getGameBoxScore(
         @Path("gameId") gameId: String
     ): Single<GameBoxScoreLeaders>
+
+    @GET("nba/trial/v7/ru/teams/{teamId}/profile.json?api_key=${App.API_KEY}")
+    fun getTeamProfile(
+        @Path("teamId") teamId: String
+    ): Single<TeamProfile>
+
+    @GET("nba/trial/v7/ru/players/{playerId}/profile.json?api_key=${App.API_KEY}")
+    fun getPlayerProfile(
+        @Path("playerId") playerId: String
+    ): Single<PlayerProfile>
 }

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_player"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.player_profile.PlayerProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivPlayerProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:contentDescription="team_image" />
+
+        <TextView
+            android:id="@+id/tvPlayerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/ivPlayerProfile"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="left team name" />
+
+        <TextView
+            android:id="@+id/tvPlayerProfileCommonInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/yearFounded"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvPlayerName"
+            app:layout_constraintTop_toBottomOf="@id/tvPlayerName"
+            tools:text="player common info" />
+
+        <Button
+            android:id="@+id/btnSetFavoritePlayer"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_star"
+            android:drawableLeft="@drawable/ic_star"
+            android:text="@string/select"
+            app:layout_constraintStart_toStartOf="@id/tvPlayerName"
+            app:layout_constraintTop_toBottomOf="@id/tvPlayerProfileCommonInfo" />
+
+        <View
+            android:id="@+id/vLinePlayerProfile"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSetFavoritePlayer" />
+
+        <ru.pg13lac.nbanews.presentation.components.SeasonAveragePlayer
+            android:id="@+id/firstSeason"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vLinePlayerProfile" />
+
+        <ru.pg13lac.nbanews.presentation.components.SeasonAveragePlayer
+            android:id="@+id/secondSeason"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/firstSeason" />
+
+        <ru.pg13lac.nbanews.presentation.components.SeasonAveragePlayer
+            android:id="@+id/thirdSeason"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/secondSeason" />
+
+        <ru.pg13lac.nbanews.presentation.components.SeasonAveragePlayer
+            android:id="@+id/fourthSeason"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/thirdSeason" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
