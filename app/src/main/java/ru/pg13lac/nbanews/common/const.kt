@@ -1,5 +1,8 @@
 package ru.pg13lac.nbanews.common
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 val nameTeams = mapOf(
     "1610612737" to "Hawks",
     "1610612738" to "Celtics",
@@ -32,8 +35,9 @@ val nameTeams = mapOf(
     "1610612762" to "Jazz",
     "1610612764" to "Wizards"
 )
-
-data class TeamNameWithId(val id: String, val name: String, val conf: String, val ref: String)
+@Parcelize
+data class TeamNameWithId(val id: String, val name: String, val conf: String, val ref: String):
+    Parcelable
 
 val teamList = listOf<TeamNameWithId>(
     TeamNameWithId("583ecb8f-fb46-11e1-82cb-f4ce4684ea4c", "Атланта Хоукс", "east", "atl"),

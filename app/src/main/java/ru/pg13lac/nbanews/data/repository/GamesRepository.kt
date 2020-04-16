@@ -11,5 +11,9 @@ class GamesRepository @Inject constructor(private val api: Api) {
     fun getSummaryGameDetails(gameId: String) = api.getSummaryGameDetails(gameId)
 
     fun getGameBoxScore(gameId: String) = api.getGameBoxScore(gameId)
+
+    fun getTeamProfile(teamId: String) = api.getTeamProfile(teamId)
+
+    fun getPlayerProfile(playerId: String) = api.getPlayerProfile(playerId)
 }
 
