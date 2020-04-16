@@ -34,7 +34,7 @@ class GameListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (gameListAdapter.mDataList.isEmpty()) {
-            viewModel.getDailyGames("2020", "01", "20")
+            viewModel.getDailyGames("2020", "02", "10")
         }
 
         gameListAdapter.attachCallback(object : OnClickCallback {
@@ -64,7 +64,7 @@ class GameListFragment : BaseFragment() {
 
     override fun setListeners() {
         srlGameList.setOnRefreshListener {
-            viewModel.getDailyGames("2020", "01", "20")
+            viewModel.getDailyGames("2020", "02", "10")
         }
     }
 
