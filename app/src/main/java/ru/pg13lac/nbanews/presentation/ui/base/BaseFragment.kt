@@ -5,18 +5,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import ru.pg13lac.nbanews.common.inflate
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<VB : ViewBinding>(
+    @LayoutRes private val layoutRes: Int
+) : Fragment() {
 
-    abstract val layoutRes: Int
+    private var _binding: VB? = null
+    protected val binding get() = _binding!!
+
+    abstract fun createBinding(inflater: LayoutInflater, container: ViewGroup?): VB
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? = container?.inflate(layoutRes)
+    ): View {
+        _binding = createBinding(inflater, container)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setModelBindings()

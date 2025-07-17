@@ -2,17 +2,17 @@ package ru.pg13lac.nbanews.presentation.ui.game_list
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import kotlinx.android.synthetic.main.fragment_game_list.*
-import ru.pg13lac.nbanews.App
 import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.common.isVisible
+import ru.pg13lac.nbanews.databinding.FragmentGameListBinding
 import ru.pg13lac.nbanews.domain.entity.OnClickCallback
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
 import ru.pg13lac.nbanews.presentation.viewModel.game_list.GameListViewModel
@@ -20,8 +20,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-class GameListFragment : BaseFragment() {
-    override val layoutRes = R.layout.fragment_game_list
+class GameListFragment : BaseFragment<FragmentGameListBinding>(R.layout.fragment_game_list) {
 
     @Inject
     lateinit var viewModel: GameListViewModel
@@ -30,6 +29,13 @@ class GameListFragment : BaseFragment() {
 
     @Inject
     lateinit var gameListAdapter: GameListAdapter
+    override fun createBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentGameListBinding {
+        return FragmentGameListBinding.inflate(inflater, container, false)
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,8 +48,8 @@ class GameListFragment : BaseFragment() {
                 routeToDetails(gameId, vTeam, hTeam)
             }
         })
-        rvGameList.layoutManager = LinearLayoutManager(activity)
-        rvGameList.adapter = gameListAdapter
+        binding.rvGameList.layoutManager = LinearLayoutManager(activity)
+        binding.rvGameList.adapter = gameListAdapter
     }
 
 
@@ -63,7 +69,7 @@ class GameListFragment : BaseFragment() {
     }
 
     override fun setListeners() {
-        srlGameList.setOnRefreshListener {
+        binding.srlGameList.setOnRefreshListener {
             viewModel.getDailyGames("2020", "02", "10")
         }
     }
@@ -77,7 +83,7 @@ class GameListFragment : BaseFragment() {
 
         viewModel.isLoading
             .subscribe { isLoading ->
-                srlGameList?.isRefreshing = isLoading
+                binding.srlGameList?.isRefreshing = isLoading
             }
             .addTo(disposeBag)
 
@@ -89,7 +95,7 @@ class GameListFragment : BaseFragment() {
             .addTo(disposeBag)
         viewModel.emptyList
             .subscribe {
-                tvEmptyList.isVisible = it
+                binding.tvEmptyList.isVisible = it
             }
             .addTo(disposeBag)
     }

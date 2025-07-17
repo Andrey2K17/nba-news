@@ -1,23 +1,32 @@
 package ru.pg13lac.nbanews.presentation.ui.summary
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import kotlinx.android.synthetic.main.fragment_summary.*
 import ru.pg13lac.nbanews.R
+import ru.pg13lac.nbanews.databinding.FragmentSummaryBinding
 import ru.pg13lac.nbanews.domain.entity.CommonTypeStats
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
 import ru.pg13lac.nbanews.presentation.viewModel.summary_game_details.SummaryGameDetailsViewModel
 import javax.inject.Inject
 
-class SummaryFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_summary
+class SummaryFragment : BaseFragment<FragmentSummaryBinding>(R.layout.fragment_summary) {
 
     @Inject
     lateinit var viewModel: SummaryGameDetailsViewModel
 
     private val disposeBag = CompositeDisposable()
+
+    override fun createBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentSummaryBinding {
+        return FragmentSummaryBinding.inflate(inflater, container, false)
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,22 +38,22 @@ class SummaryFragment : BaseFragment() {
         super.setModelBindings()
         viewModel.gameDetails
             .subscribe {
-                tcSummary.setTeamComparisonView(it)
+                binding.tcSummary.setTeamComparisonView(it)
             }
             .addTo(disposeBag)
 
         viewModel.teamPointsForQuarter
             .subscribe {
-                qtSummary.setQuarterTableView(it)
+                binding.qtSummary.setQuarterTableView(it)
             }
             .addTo(disposeBag)
 
         viewModel.gameLeaders
             .subscribe {
                 it?.let {
-                    glSummaryPoints.setGameLeadersInView(it, CommonTypeStats.POINT)
-                    glSummaryRebounds.setGameLeadersInView(it, CommonTypeStats.REBOUND)
-                    glSummaryAssists.setGameLeadersInView(it, CommonTypeStats.ASSIST)
+                    binding.glSummaryPoints.setGameLeadersInView(it, CommonTypeStats.POINT)
+                    binding.glSummaryRebounds.setGameLeadersInView(it, CommonTypeStats.REBOUND)
+                    binding.glSummaryAssists.setGameLeadersInView(it, CommonTypeStats.ASSIST)
                 }
             }
             .addTo(disposeBag)

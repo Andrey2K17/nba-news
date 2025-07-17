@@ -1,8 +1,8 @@
 package ru.pg13lac.nbanews.domain.entity
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 enum class CommonTypeStats {
     POINT, REBOUND, ASSIST

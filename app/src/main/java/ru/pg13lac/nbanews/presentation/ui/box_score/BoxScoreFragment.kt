@@ -1,22 +1,23 @@
 package ru.pg13lac.nbanews.presentation.ui.box_score
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import kotlinx.android.synthetic.main.fragment_box_score.*
 import ru.pg13lac.nbanews.R
 import ru.pg13lac.nbanews.common.isVisible
+import ru.pg13lac.nbanews.databinding.FragmentBoxScoreBinding
 import ru.pg13lac.nbanews.domain.entity.BoxScore
 import ru.pg13lac.nbanews.domain.entity.Pair
 import ru.pg13lac.nbanews.presentation.ui.base.BaseFragment
 import ru.pg13lac.nbanews.presentation.viewModel.summary_game_details.SummaryGameDetailsViewModel
 import javax.inject.Inject
 
-class BoxScoreFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_box_score
+class BoxScoreFragment : BaseFragment<FragmentBoxScoreBinding>(R.layout.fragment_box_score) {
 
     @Inject
     lateinit var viewModel: SummaryGameDetailsViewModel
@@ -26,6 +27,12 @@ class BoxScoreFragment : BaseFragment() {
     lateinit var boxScoreAdapter: BoxScoreAdapter
 
     private var boxScore: Pair<MutableList<BoxScore>, MutableList<BoxScore>>? = null
+    override fun createBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentBoxScoreBinding {
+       return  FragmentBoxScoreBinding.inflate(inflater, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,15 +40,16 @@ class BoxScoreFragment : BaseFragment() {
         val vTeam = arguments?.getString("vTeam")
         val hTeam = arguments?.getString("hTeam")
 
-        tlBoxScore?.getTabAt(0)?.text = vTeam ?: "VISITOR_TEAM"
-        tlBoxScore?.getTabAt(1)?.text = hTeam ?: "HOME_TEAM"
 
-        rvBoxScore.layoutManager = LinearLayoutManager(activity)
-        rvBoxScore.adapter = boxScoreAdapter
+        binding.tlBoxScore?.getTabAt(0)?.text = vTeam ?: "VISITOR_TEAM"
+        binding.tlBoxScore?.getTabAt(1)?.text = hTeam ?: "HOME_TEAM"
+
+        binding.rvBoxScore.layoutManager = LinearLayoutManager(activity)
+        binding.rvBoxScore.adapter = boxScoreAdapter
     }
 
     override fun setListeners() {
-        tlBoxScore.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        binding.tlBoxScore.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?) {}
 
             override fun onTabUnselected(p0: TabLayout.Tab?) {}
@@ -68,7 +76,7 @@ class BoxScoreFragment : BaseFragment() {
 
         viewModel.isLoading
             .subscribe { isLoading ->
-                clpbBoxScore?.isVisible = isLoading
+                binding.clpbBoxScore?.isVisible = isLoading
             }
             .addTo(disposeBag)
 
